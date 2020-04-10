@@ -1,5 +1,6 @@
 package allaboutecm.model;
 
+import org.apache.commons.lang3.ObjectUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,39 +17,99 @@ class AlbumUnitTest {
     public void setUp() {
         album = new Album(1975, "ECM 1064/65", "The Köln Concert");
     }
+
+
     //    test classes for getRecordNumber
-
-    //    test classes for setRecordNumber
-
-
-
-
-    //    test classes for setAlbumName
-
-    //    test classes for getFeaturedMusicians
-
-    //    test classes for setFeaturedMusicians
-
-    //    test classes for getInstruments
+    @Test
+    public void getAlbumShouldReturnString() {
+        assertEquals("ECM 1064/65", album.getRecordNumber());
+    }
 
 
-    //    test classes for setInstruments
+    //    test cases for setRecordNumber
+    @Test
+    public void shouldThrowExceptionWhenRecordNumberSetToNull() {
+        NullPointerException e = assertThrows(NullPointerException.class, () -> album.setRecordNumber(null));
+        assertEquals("Number of records cannot be null", e.getMessage());
+    }
 
-    //    test classes for getAlbumURL
+    //    test cases for setAlbumName
+    /* ------------------------------------------------------------------------------------------
+     * Todo: With null argument, it should throw illegal argument exception
+     */
+    @DisplayName("Should throw exceptions when pass a null into album name to setAlbumName function")
+    @Test
+    public void shouldThrowExceptionWhenAlbumNameSetToNull() {
+        NullPointerException e = assertThrows(NullPointerException.class, () -> album.setAlbumName(null));
+        assertEquals("album name cannot be null or empty", e.getMessage());
+    }
 
-    //    test classes for setAlbumURL
 
-    //    test classes for getTracks
+    //    test cases for getFeaturedMusicians
 
-    //    test classes for setTracks
+    //    test cases for setFeaturedMusicians
+    /* ------------------------------------------------------------------------------------------
+     * Todo: With null argument, it should throw illegal argument exception
+     */
+    @Test
+    public void shouldThrowExceptionWhenSetFeatureMusicianSetToNull() {
+        NullPointerException e = assertThrows(NullPointerException.class, () -> album.setFeaturedMusicians(null));
+        assertEquals("Featured musician list cannot be null", e.getMessage());
+    }
 
-    //    test classes for getReleaseYear
+    //    test cases for getInstruments
 
-    //    test classes for setReleaseYear
 
-    //    test classes for getAlbumName
+    //    test cases for setInstruments
+    /* ------------------------------------------------------------------------------------------
+     * Todo: With null argument, it should throw illegal argument exception
+     */
 
-    //    test classes for setAlbumName
+    @Test
+    public void shouldThrowExceptionWhenSetInstrumentsSetToNull() {
+        NullPointerException e = assertThrows(NullPointerException.class, () -> album.setInstruments(null));
+        assertEquals("Instruments list cannot be null", e.getMessage());
+    }
+    //    test cases for getAlbumURL
+
+    //    test cases for setAlbumURL
+    /* ------------------------------------------------------------------------------------------
+     * Todo: With null argument, it should throw illegal argument exception
+     */
+
+    @Test
+    public void shouldThrowExceptionWhenAlbumURLSetToNull() {
+        NullPointerException e = assertThrows(NullPointerException.class, () -> album.setAlbumURL(null));
+        assertEquals("Album URL cannot be null", e.getMessage());
+    }
+
+    //    test cases for getTracks
+
+    //    test cases for setTracks
+    /* ------------------------------------------------------------------------------------------
+     * Todo: With null argument, it should throw illegal argument exception
+     */
+
+    @Test
+    public void shouldThrowExceptionWhenTracksSetToNull() {
+        NullPointerException e = assertThrows(NullPointerException.class, () -> album.setTracks(null));
+        assertEquals("Tracks list cannot be null", e.getMessage());
+    }
+
+    //    test cases for getReleaseYear
+
+    //    test cases for setReleaseYear
+    /* ------------------------------------------------------------------------------------------
+     * Todo: With null argument, it should throw illegal argument exception
+     */
+
+
+    //    test cases for getAlbumName
+
+    //    test cases for setAlbumName
+    /* ------------------------------------------------------------------------------------------
+     * Todo: With null argument, it should throw illegal argument exception
+     */
 
     @Test
     @DisplayName("Album name cannot be null")
