@@ -16,6 +16,39 @@ class AlbumUnitTest {
     public void setUp() {
         album = new Album(1975, "ECM 1064/65", "The Köln Concert");
     }
+    //    test classes for getRecordNumber
+
+    //    test classes for setRecordNumber
+
+
+
+
+    //    test classes for setAlbumName
+
+    //    test classes for getFeaturedMusicians
+
+    //    test classes for setFeaturedMusicians
+
+    //    test classes for getInstruments
+
+
+    //    test classes for setInstruments
+
+    //    test classes for getAlbumURL
+
+    //    test classes for setAlbumURL
+
+    //    test classes for getTracks
+
+    //    test classes for setTracks
+
+    //    test classes for getReleaseYear
+
+    //    test classes for setReleaseYear
+
+    //    test classes for getAlbumName
+
+    //    test classes for setAlbumName
 
     @Test
     @DisplayName("Album name cannot be null")
@@ -36,4 +69,6 @@ class AlbumUnitTest {
 
         assertEquals(album, album1);
     }
+
+
 }
