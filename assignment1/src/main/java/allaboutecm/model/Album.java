@@ -2,6 +2,7 @@ package allaboutecm.model;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
+import org.apache.commons.lang3.ObjectUtils;
 
 import java.net.URL;
 import java.util.List;
@@ -55,6 +56,9 @@ public class Album extends Entity {
     }
 
     public void setRecordNumber(String recordNumber) {
+        if (null == recordNumber){
+            throw new NullPointerException("Number of records cannot be null");
+        }
         notNull(recordNumber);
         notBlank(recordNumber);
 
@@ -66,6 +70,9 @@ public class Album extends Entity {
     }
 
     public void setFeaturedMusicians(Set<Musician> featuredMusicians) {
+        if (null == featuredMusicians){
+            throw new NullPointerException("Featured musician list cannot be null");
+        }
         this.featuredMusicians = featuredMusicians;
     }
 
@@ -74,6 +81,9 @@ public class Album extends Entity {
     }
 
     public void setInstruments(Set<MusicianInstrument> instruments) {
+        if (null == instruments){
+            throw new NullPointerException("Instruments list cannot be null");
+        }
         this.instruments = instruments;
     }
 
@@ -82,6 +92,9 @@ public class Album extends Entity {
     }
 
     public void setAlbumURL(URL albumURL) {
+        if (null == albumURL) {
+            throw new NullPointerException("Album URL cannot be null");
+        }
         this.albumURL = albumURL;
     }
 
@@ -90,6 +103,9 @@ public class Album extends Entity {
     }
 
     public void setTracks(List<String> tracks) {
+        if (null == tracks) {
+            throw new NullPointerException("Tracks list cannot be null");
+        }
         this.tracks = tracks;
     }
 
@@ -106,6 +122,9 @@ public class Album extends Entity {
     }
 
     public void setAlbumName(String albumName) {
+        if (null == albumName){
+            throw new NullPointerException("album name cannot be null or empty");
+        }
         notNull(albumName);
         notBlank(albumName);
 
