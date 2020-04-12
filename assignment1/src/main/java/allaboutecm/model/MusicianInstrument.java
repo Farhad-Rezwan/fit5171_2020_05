@@ -30,7 +30,6 @@ public class MusicianInstrument extends Entity {
     }
 
     public void setMusician(Musician musician) {
-        notNull(musician);
         this.musician = musician;
     }
 
@@ -39,7 +38,6 @@ public class MusicianInstrument extends Entity {
     }
 
     public void setMusicalInstrument(MusicalInstrument musicalInstrument) {
-        notNull(musicalInstrument);
         this.musicalInstrument = musicalInstrument;
     }
 

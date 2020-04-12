@@ -5,7 +5,9 @@ import com.google.common.collect.Sets;
 import org.apache.commons.lang3.ObjectUtils;
 
 import java.net.URL;
-import java.util.*;
+import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 
 import static org.apache.commons.lang3.Validate.notBlank;
 import static org.apache.commons.lang3.Validate.notNull;
@@ -112,12 +114,6 @@ public class Album extends Entity {
     }
 
     public void setReleaseYear(int releaseYear) {
-        Calendar cal = GregorianCalendar.getInstance();
-
-        if (releaseYear < 0) {
-            throw new IllegalArgumentException();
-        }
-//        if (cal.get(Calendar.YEAR))
         this.releaseYear = releaseYear;
     }
 

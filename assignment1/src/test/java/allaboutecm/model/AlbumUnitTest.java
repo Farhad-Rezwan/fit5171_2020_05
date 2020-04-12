@@ -39,9 +39,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-
-import java.text.ParseException;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class AlbumUnitTest {
@@ -85,7 +82,6 @@ class AlbumUnitTest {
 
 
     //    test cases for getFeaturedMusicians
-
 
     //    test cases for setFeaturedMusicians
     /* ------------------------------------------------------------------------------------------
@@ -142,17 +138,9 @@ class AlbumUnitTest {
     /* ------------------------------------------------------------------------------------------
      * Todo: With null argument, it should throw illegal argument exception
      */
-
-    @ParameterizedTest
-    @ValueSource(ints = {-1, -2, -3})
-    public void releaseYearHasToBePositveNumber(int year) {
-        assertThrows(IllegalArgumentException.class, () ->album.setReleaseYear(year));
-    }
-
-//    @ParameterizedTest
-//    @ValueSource(ints = {1000, 3000})
-//    public void realeaseYearHasToBeValidYear(int year) {
-//        assertThrows(ParseException.class, () ->album.setReleaseYear(year));
+//    @Test
+//    public void albumReleaseYearHasToBeYear() {
+//        assertThrows(IllegalArgumentException.class, () -> album.setReleaseYear(0);
 //    }
 
 
@@ -185,7 +173,7 @@ class AlbumUnitTest {
     @ParameterizedTest
     @ValueSource(strings = {"", " ", "    \t"})
     @DisplayName("Album name cannot be empty or blank")
-    public void albumNameConNotBeEmptyOrBlank(String arg) {
+    public void albumNameConnotBeEmptyOrBlank(String arg) {
         assertThrows(IllegalArgumentException.class, () -> album.setAlbumName(arg));
     }
 
