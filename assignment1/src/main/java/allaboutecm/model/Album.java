@@ -25,7 +25,7 @@ public class Album extends Entity {
 
     private String albumName;
 
-    private Set<Musician> featuredMusicians;
+    private Set<Musician> featuredMusicians; //unordered cannot store duplicates
 
     private Set<MusicianInstrument> instruments;
 

@@ -26,6 +26,7 @@ public class Musician extends Entity {
         this.musicianUrl = null;
 
         albums = Sets.newLinkedHashSet();
+                //Linked Hash Set. Duplicates not allowed insertion order preserved.
     }
 
     public String getName() {
