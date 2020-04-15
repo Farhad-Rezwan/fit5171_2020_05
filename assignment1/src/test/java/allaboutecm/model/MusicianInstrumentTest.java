@@ -31,7 +31,7 @@ class MusicianInstrumentTest {
     }
 
     @Test
-    public void sameMusicianAndMusicialInstrumentMeansSameAlbum() {
+    public void sameMusicianAndMusicianInstrumentMeansSameMusicalInstrument() {
         Musician musician1 = new Musician("zkan0005musician");
         MusicalInstrument musicalInstrument1 = new MusicalInstrument("zkan0005musicalInstrument");
         MusicianInstrument musicianInstrument1 = new MusicianInstrument( musician1, musicalInstrument1);

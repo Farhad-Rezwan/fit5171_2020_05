@@ -42,6 +42,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -54,6 +55,7 @@ class AlbumUnitTest {
         album = new Album(1975, "ECM 1064/65", "The Köln Concert");
     }
     //  Add a test to verify thai the album object is not null
+    @DisplayName("Album object Should Not Be Null")
     @Test
     public void shouldConstructAlbum() {
         assertNotNull(album, "Album object should not be null");
@@ -125,11 +127,7 @@ class AlbumUnitTest {
     }
 
 
-//        test cases for getFeaturedMusicians
-//    @Test
-//    public void shouldReturnListForEmptyFeaturedMusicianField() {
-//
-//    }
+
 
 
     //    test cases for setFeaturedMusicians
@@ -144,20 +142,21 @@ class AlbumUnitTest {
     }
 
     @Test
-    public void shouldReturnMusicianNamesProperly() {
+    public void twoMusicianNameShouldReferSameMusician() {
         Musician m = new Musician("Farhad Ullah Rezwan");
-        Musician k = new Musician("Imtiaz Ahmed");
         Set<Musician> s = new HashSet<Musician>();
         s.add(m);
-        s.add(k);
         album.setFeaturedMusicians(s);
-        System.out.println(album.getFeaturedMusicians());
+
+        for (Iterator<Musician> musicians = s.iterator(); musicians.hasNext(); ) {
+            Musician f = musicians.next();
+            assertTrue(f.equals(new Musician("Farhad Ullah Rezwan")));
+
+        }
+
     }
-
-
-
-
     //    test cases for getInstruments
+
 
 
 
