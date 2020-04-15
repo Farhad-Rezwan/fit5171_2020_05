@@ -11,11 +11,11 @@ class MusicianInstrumentTest {
     private MusicianInstrument musicianInstrument;
 
     @BeforeEach
-
+    //initialize
     public void setUp() {
-        Musician musician = new Musician("zkan0005musician");
-        MusicalInstrument musicialInstrument = new MusicalInstrument("zkan0005musicalInstrument");
-        musicianInstrument = new MusicianInstrument( musician, musicialInstrument);}
+        Musician musician = new Musician("Bill White");
+        MusicalInstrument musicalInstrument = new MusicalInstrument("Piano");
+        musicianInstrument = new MusicianInstrument( musician, musicalInstrument);}
 
     @Test
     @DisplayName("musician cannot be null")
@@ -31,27 +31,27 @@ class MusicianInstrumentTest {
     }
 
     @Test
-    public void sameMusicianAndMusicianInstrumentMeansSameMusicalInstrument() {
-        Musician musician1 = new Musician("zkan0005musician");
-        MusicalInstrument musicalInstrument1 = new MusicalInstrument("zkan0005musicalInstrument");
+    @DisplayName("Same Musician And Musical Instrument Means Same Musician Instrument")
+    public void sameMusicianAndMusicalInstrumentMeansSameMusicianInstrument() {
+        Musician musician1 = new Musician("Bill White");
+        MusicalInstrument musicalInstrument1 = new MusicalInstrument("Piano");
         MusicianInstrument musicianInstrument1 = new MusicianInstrument( musician1, musicalInstrument1);
 
         assertEquals(musicianInstrument, musicianInstrument1);
     }
 
     @Test
-    public void shouldGetZkan0005Musician() {
-        Musician musician1 = new Musician("zkan0005musician");
+    @DisplayName("should return a musician as an object")
+    public void shouldGetMusician() {
+        Musician musician1 = new Musician("Bill White");
         assertTrue(musicianInstrument.getMusician().equals(musician1),"getMusician method execute successfully");
-
-        //assertTrue(musicianInstrument.getMusician().getName().equals("zkan0005musician"));
     }
 
     @Test
-    public void shouldGetZkan0005MusicalInstrument() {
-        MusicalInstrument musicalInstrument1 = new MusicalInstrument("zkan0005musicalInstrument");
+    @DisplayName("should return a musicalInstrument as an object")
+    public void shouldGetMusicalInstrument() {
+        MusicalInstrument musicalInstrument1 = new MusicalInstrument("Piano");
         assertTrue(musicianInstrument.getMusicalInstrument().equals(musicalInstrument1),"getMusicalInstrument method execute successfully");
-        //assertTrue(musicianInstrument.getMusicalInstrument().getName().equals("zkan0005musicalInstrument"));
     }
 
 
