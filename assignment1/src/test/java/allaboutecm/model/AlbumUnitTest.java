@@ -34,11 +34,15 @@ package allaboutecm.model;
 import allaboutecm.model.Album;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.checkerframework.checker.units.qual.s;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.HashSet;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -55,25 +59,23 @@ class AlbumUnitTest {
         assertNotNull(album, "Album object should not be null");
     }
 
+
+
+
     //    test classes for getRecordNumber
     @Test
-    public void getAlbumShouldReturnString() {
+    public void getRecordNumberShouldReturnString() {
         assertEquals("ECM 1064/65", album.getRecordNumber());
     }
 
-//    @Test
-//    public void recordNumberShouldBeAlphanumeric() {
-//        Album album2 = new Album(1222, "ECM 1064/65", "The");
-//        System.out.println(StringUtils.isAlphanumeric(album.getRecordNumber().replaceAll("\\s+","")));
-//        assertTrue(StringUtils.isAlphanumeric("adfasdf 1212".replaceAll("\\s+","")));
-//    }
 
 
     //    test cases for setRecordNumber
     /* ------------------------------------------------------------------------------------------
      * Todo: 1. With null argument, it should throw illegal argument exception
      *       2. Should Only accept alphanumeric characters, and can contain space or forward slash.
-     *       3. Should only accept predefined prefix.
+     *       3. Should only accept predefined prefix. (ie ECM, )
+     *       4. Should Only Accept Suffix of Numbers.
      */
 
     @Test
@@ -100,6 +102,15 @@ class AlbumUnitTest {
         IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () ->album.setRecordNumber(args));
     }
 
+    @Test
+    public void shouldAcceptProperRecordNumber() {
+        album.setRecordNumber("XtraWatt 12");
+        assertTrue("XtraWatt 12" ==  album.getRecordNumber());
+        IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () ->album.setRecordNumber("XtraWatt12"));
+        assertTrue("Illegal record number" == e.getMessage());
+
+    }
+
 
     //    test cases for setAlbumName
     /* ------------------------------------------------------------------------------------------
@@ -114,7 +125,12 @@ class AlbumUnitTest {
     }
 
 
-    //    test cases for getFeaturedMusicians
+//        test cases for getFeaturedMusicians
+//    @Test
+//    public void shouldReturnListForEmptyFeaturedMusicianField() {
+//
+//    }
+
 
     //    test cases for setFeaturedMusicians
     /* ------------------------------------------------------------------------------------------
@@ -124,9 +140,26 @@ class AlbumUnitTest {
     public void shouldThrowExceptionWhenSetFeatureMusicianSetToNull() {
         NullPointerException e = assertThrows(NullPointerException.class, () -> album.setFeaturedMusicians(null));
         assertEquals("Featured musician list cannot be null", e.getMessage());
+
     }
 
+    @Test
+    public void shouldReturnMusicianNamesProperly() {
+        Musician m = new Musician("Farhad Ullah Rezwan");
+        Musician k = new Musician("Imtiaz Ahmed");
+        Set<Musician> s = new HashSet<Musician>();
+        s.add(m);
+        s.add(k);
+        album.setFeaturedMusicians(s);
+        System.out.println(album.getFeaturedMusicians());
+    }
+
+
+
+
     //    test cases for getInstruments
+
+
 
 
     //    test cases for setInstruments

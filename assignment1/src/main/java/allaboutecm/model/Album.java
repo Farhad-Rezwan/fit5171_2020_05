@@ -55,6 +55,7 @@ public class Album extends Entity {
     }
 
     public String getRecordNumber() {
+
         return recordNumber;
     }
 
@@ -66,10 +67,10 @@ public class Album extends Entity {
         if (!StringUtils.isAlphanumeric(recordNumber
                 .replaceAll("/","")
                 .replaceAll("\\s+",""))){
-            throw new IllegalArgumentException("Illegal Argument");
+            throw new IllegalArgumentException("Illegal record number");
         }
         if(!StringUtils.startsWithAny(recordNumber, prefix)) {
-            throw new IllegalArgumentException("Illegal Record Name");
+            throw new IllegalArgumentException("Illegal record number");
         }
 
         for (int i = 0; i < 6; i++) {
@@ -77,7 +78,7 @@ public class Album extends Entity {
                 String numberValue = recordNumber.substring(prefix[i].length())
                         .replaceAll("/","");
                 if (Character.isDigit(Integer.parseInt(numberValue))){
-                    throw new IllegalArgumentException("Illegal Argument");
+                    throw new IllegalArgumentException("Illegal record number");
                 }
             }
         }
@@ -90,6 +91,7 @@ public class Album extends Entity {
     }
 
     public Set<Musician> getFeaturedMusicians() {
+
         return featuredMusicians;
     }
 
