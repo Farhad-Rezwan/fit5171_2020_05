@@ -33,6 +33,7 @@ package allaboutecm.model;
 
 import allaboutecm.model.Album;
 import org.apache.commons.lang3.ObjectUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -60,13 +61,45 @@ class AlbumUnitTest {
         assertEquals("ECM 1064/65", album.getRecordNumber());
     }
 
+//    @Test
+//    public void recordNumberShouldBeAlphanumeric() {
+//        Album album2 = new Album(1222, "ECM 1064/65", "The");
+//        System.out.println(StringUtils.isAlphanumeric(album.getRecordNumber().replaceAll("\\s+","")));
+//        assertTrue(StringUtils.isAlphanumeric("adfasdf 1212".replaceAll("\\s+","")));
+//    }
+
 
     //    test cases for setRecordNumber
+    /* ------------------------------------------------------------------------------------------
+     * Todo: 1. With null argument, it should throw illegal argument exception
+     *       2. Should Only accept alphanumeric characters, and can contain space or forward slash.
+     *       3. Should only accept predefined prefix.
+     */
+
     @Test
     public void shouldThrowExceptionWhenRecordNumberSetToNull() {
         NullPointerException e = assertThrows(NullPointerException.class, () -> album.setRecordNumber(null));
-        assertEquals("Number of records cannot be null", e.getMessage());
+        assertEquals("Record Number can not be null", e.getMessage());
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"*", "&", "%"})
+    public void recordNumberCanOnlyAcceptAlphanumericWithSpaceORWithForwardSlash(String args){
+        IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> album.setRecordNumber(args));
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"ECM1211", "IDONTKNO 1212"})
+    public void recordNumberShouldOnlyAcceptPredefinedPrefixWithSpace(String args) {
+        IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () ->album.setRecordNumber(args));
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"XtraWatt1212", "ECM XYZA"})
+    public void recordNumberShouldOnlyAcceptSuffixOfNumber(String args) {
+        IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () ->album.setRecordNumber(args));
+    }
+
 
     //    test cases for setAlbumName
     /* ------------------------------------------------------------------------------------------

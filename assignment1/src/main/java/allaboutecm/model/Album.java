@@ -3,6 +3,7 @@ package allaboutecm.model;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import org.apache.commons.lang3.ObjectUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.net.URL;
 import java.util.List;
@@ -49,6 +50,8 @@ public class Album extends Entity {
         featuredMusicians = Sets.newHashSet();
         instruments = Sets.newHashSet();
         tracks = Lists.newArrayList();
+
+
     }
 
     public String getRecordNumber() {
@@ -56,9 +59,30 @@ public class Album extends Entity {
     }
 
     public void setRecordNumber(String recordNumber) {
+        String[] prefix = {"ECM ","Carmo ", "RJAL ", "YAN ", "Watt ", "XtraWatt "};
         if (null == recordNumber){
-            throw new NullPointerException("Number of records cannot be null");
+            throw new NullPointerException("Record Number can not be null");
         }
+        if (!StringUtils.isAlphanumeric(recordNumber
+                .replaceAll("/","")
+                .replaceAll("\\s+",""))){
+            throw new IllegalArgumentException("Illegal Argument");
+        }
+        if(!StringUtils.startsWithAny(recordNumber, prefix)) {
+            throw new IllegalArgumentException("Illegal Record Name");
+        }
+
+        for (int i = 0; i < 6; i++) {
+            if (recordNumber.startsWith(prefix[i])){
+                String numberValue = recordNumber.substring(prefix[i].length())
+                        .replaceAll("/","");
+                if (Character.isDigit(Integer.parseInt(numberValue))){
+                    throw new IllegalArgumentException("Illegal Argument");
+                }
+            }
+        }
+
+
         notNull(recordNumber);
         notBlank(recordNumber);
 
@@ -140,6 +164,8 @@ public class Album extends Entity {
                 recordNumber.equals(album.recordNumber) &&
                 albumName.equals(album.albumName);
     }
+
+
 
     @Override
     public int hashCode() {
