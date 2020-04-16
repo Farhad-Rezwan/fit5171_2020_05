@@ -5,11 +5,17 @@ import com.google.common.collect.Sets;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import java.io.IOException;
+import java.net.ProtocolException;
 import java.net.URL;
+import java.net.UnknownHostException;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+
+import java.net.HttpURLConnection;
+
 
 import static org.apache.commons.lang3.Validate.notBlank;
 import static org.apache.commons.lang3.Validate.notNull;
@@ -118,9 +124,15 @@ public class Album extends Entity {
         return albumURL;
     }
 
-    public void setAlbumURL(URL albumURL) {
+    public void setAlbumURL(URL albumURL) throws IOException {
         if (null == albumURL) {
             throw new NullPointerException("Album URL cannot be null");
+        }
+        HttpURLConnection connection = (HttpURLConnection)albumURL.openConnection();
+        connection.setRequestMethod("GET");
+        connection.connect();
+        if (connection.getResponseCode() == 401){
+            throw new UnknownHostException("album URL is invalid");
         }
         this.albumURL = albumURL;
     }
