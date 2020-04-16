@@ -38,9 +38,15 @@ import org.checkerframework.checker.units.qual.s;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.RegisterExtension;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.UnknownHostException;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
@@ -54,7 +60,7 @@ class AlbumUnitTest {
     public void setUp() {
         album = new Album(1975, "ECM 1064/65", "The Köln Concert");
     }
-    //  Add a test to verify thai the album object is not null
+
     @DisplayName("Album object Should Not Be Null")
     @Test
     public void shouldConstructAlbum() {
@@ -64,12 +70,17 @@ class AlbumUnitTest {
 
 
 
-    //    test classes for getRecordNumber
 
+    @DisplayName("Record number should return proper value while adding and updating")
     @Test
-    public void getRecordNumberShouldReturnString() {
-        assertEquals("ECM 1064/65", album.getRecordNumber());
+    public void recordNumberShouldReturnProperValueAddingAndUpdating() {
+        Album album2 = new Album(2019, "EC2680", "BIG VICIOUS");
+        assertTrue("EC2680".equals(album2.getRecordNumber()));
+        album2.setRecordNumber("ECM 2680");
+        assertTrue("ECM 2680".equals(album2.getRecordNumber()));
+
     }
+
 
 
 
@@ -81,37 +92,56 @@ class AlbumUnitTest {
      *       4. Should Only Accept Suffix of Numbers.
      */
 
+    @DisplayName("Record number with null argument should throw NullPointerException")
     @Test
     public void shouldThrowExceptionWhenRecordNumberSetToNull() {
         NullPointerException e = assertThrows(NullPointerException.class, () -> album.setRecordNumber(null));
         assertEquals("Record Number can not be null", e.getMessage());
     }
 
+    @DisplayName("Record Number can only accept Alphanumeric, and should not accept special characters")
     @ParameterizedTest
     @ValueSource(strings = {"*", "&", "%"})
     public void recordNumberCanOnlyAcceptAlphanumericWithSpaceORWithForwardSlash(String args){
         IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> album.setRecordNumber(args));
     }
 
+    @DisplayName("Record number should only accept " +
+            "predefined prefixes ie. ECM, Carmo, RJAL, " +
+            "YAN, Watt, and XtraWatt, otherwise throw illegal argument exception")
     @ParameterizedTest
     @ValueSource(strings = {"ECM1211", "IDONTKNO 1212"})
     public void recordNumberShouldOnlyAcceptPredefinedPrefixWithSpace(String args) {
         IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () ->album.setRecordNumber(args));
     }
 
+    @DisplayName("RecordNumber prefix is case sensitive")
+    @Test
+    public void shouldThrowIllegalArgumentExceptionPrefixCaseIsNotFollowed() {
+        IllegalArgumentException e = assertThrows(IllegalArgumentException.class, ()->album.setRecordNumber("ecm 1212"));
+    }
+
+
+    @DisplayName("Record Number can only accept suffix of number, so IllegalArgumentException is thrown")
     @ParameterizedTest
-    @ValueSource(strings = {"XtraWatt1212", "ECM XYZA"})
+    @ValueSource(strings = {"XtraWatt 1*12", "ECM XYZA"})
     public void recordNumberShouldOnlyAcceptSuffixOfNumber(String args) {
         IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () ->album.setRecordNumber(args));
     }
 
+    @DisplayName("Record Number can only accept suffix of a number which might contain forward-slash like  \"ECM 1064/65\"")
+    @ParameterizedTest
+    @ValueSource(strings = {"ECM 1064/65", "XtraWatt 12"})
+    public void shouldAcceptProperRecordNumber(String goodRecordNumbers) {
+        album.setRecordNumber(goodRecordNumbers);
+        assertTrue(goodRecordNumbers == album.getRecordNumber());
+    }
+
+    @DisplayName("Should throw IllegalArgumentException when record number does not have space after the prefixes")
     @Test
-    public void shouldAcceptProperRecordNumber() {
-        album.setRecordNumber("XtraWatt 12");
-        assertTrue("XtraWatt 12" ==  album.getRecordNumber());
+    public void test() {
         IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () ->album.setRecordNumber("XtraWatt12"));
         assertTrue("Illegal record number" == e.getMessage());
-
     }
 
 
@@ -127,21 +157,15 @@ class AlbumUnitTest {
         assertEquals("album name cannot be null or empty", e.getMessage());
     }
 
-
-
-
-
-    //    test cases for setFeaturedMusicians
-    /* ------------------------------------------------------------------------------------------
-     * Todo: With null argument, it should throw illegal argument exception
-     */
+    @DisplayName("Should throw NullPointerException when featured musician is set to null")
     @Test
-    public void shouldThrowExceptionWhenSetFeatureMusicianSetToNull() {
+    public void shouldThrowExceptionWhenSetFeaturedMusicianSetToNull() {
         NullPointerException e = assertThrows(NullPointerException.class, () -> album.setFeaturedMusicians(null));
         assertEquals("Featured musician list cannot be null", e.getMessage());
 
     }
 
+    @DisplayName("Same name for two musician should refer same Musician object.")
     @Test
     public void twoMusicianNamesShouldReferSameMusician() {
         Musician m = new Musician("Farhad Ullah Rezwan");
@@ -152,14 +176,12 @@ class AlbumUnitTest {
         for (Iterator<Musician> musicians = s.iterator(); musicians.hasNext(); ) {
             Musician f = musicians.next();
             assertTrue(f.equals(new Musician("Farhad Ullah Rezwan")));
-
         }
-
     }
-    //    test cases for getInstruments
 
+    @DisplayName("Two Musical Instrument should refer to same musician and musician instrument")
     @Test
-    public void twoMusicalInstrumentShouldReferSameMusicianAndSameInstrument() {
+    public void twoMusicalInstrumentShouldReferSameMusicianAndSameMusicalInstrumentOfMusicianInstrumentAttribute() {
         Musician m = new Musician("Farhad Ullah Rezwan");
         MusicalInstrument i = new MusicalInstrument("Violin");
         MusicianInstrument mi = new MusicianInstrument(m, i);
@@ -171,32 +193,40 @@ class AlbumUnitTest {
         for (Iterator<MusicianInstrument> musicianInstruments = s.iterator(); musicianInstruments.hasNext();) {
              MusicianInstrument f = musicianInstruments.next();
              assertTrue(f.equals(new MusicianInstrument(new Musician("Farhad Ullah Rezwan"), new MusicalInstrument("Violin"))));
-
         }
-
-
     }
 
-
-
-
-
-    //    test cases for setInstruments
-    /* ------------------------------------------------------------------------------------------
-     * Todo: With null argument, it should throw illegal argument exception
-     */
-
+    @DisplayName("Should throw NullPointerException when instruments is set to null")
     @Test
     public void shouldThrowExceptionWhenSetInstrumentsSetToNull() {
         NullPointerException e = assertThrows(NullPointerException.class, () -> album.setInstruments(null));
         assertEquals("Instruments list cannot be null", e.getMessage());
     }
+
     //    test cases for getAlbumURL
+
+
 
     //    test cases for setAlbumURL
     /* ------------------------------------------------------------------------------------------
      * Todo: With null argument, it should throw illegal argument exception
      */
+
+    @Test
+    void getProductList() throws IOException {
+        URL url = new URL("https://www.google.com");
+        HttpURLConnection connection = (HttpURLConnection)url.openConnection();
+        connection.setRequestMethod("GET");
+        connection.connect();
+        int code = connection.getResponseCode();
+        System.out.println(code);
+    }
+
+    @Test
+    public void shouldThrowUnknownHostExceptionWhenInvalidURLIsSet() {
+        assertThrows(UnknownHostException.class, () -> album
+                .setAlbumURL(new URL("https://www.goasdfasdfasdfaogle.com")));
+    }
 
     @Test
     public void shouldThrowExceptionWhenAlbumURLSetToNull() {
