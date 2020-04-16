@@ -249,7 +249,16 @@ class AlbumUnitTest {
 
     @Test
     @DisplayName("Input should be a 4 digit number")
-    public void releaseYearShouldBe4DigitNumber() {
-        assertThrows(IllegalArgumentException.class, () -> album.setReleaseYear(1969));
+    public void releaseYearShouldBeBetween190AndCurrent() {
+        assertThrows(IllegalArgumentException.class, () -> album.setReleaseYear(2021));
     }
+
+    @Test
+    @DisplayName("to check if the set value is correctly returned")
+    public void shouldReturnCorrectValueWhichIsSetForReleaseYear()
+    {
+        assertEquals(1975, album.getReleaseYear());
+    }
+
+
 }

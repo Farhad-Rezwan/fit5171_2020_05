@@ -25,7 +25,8 @@ public class MusicianInstrument extends Entity {
     }
 
 
-    public Musician getMusician() {
+    public Musician getMusician()
+    {
         return musician;
     }
 
