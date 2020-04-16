@@ -231,10 +231,6 @@ class AlbumUnitTest {
     }
 
 
-
-
-
-
     @ParameterizedTest
     @ValueSource(strings = {"", " ", "    \t"})
     @DisplayName("Album name cannot be empty or blank")
@@ -250,4 +246,9 @@ class AlbumUnitTest {
     }
 
 
+    @Test
+    @DisplayName("Input should be a 4 digit number")
+    public void releaseYearShouldBe4DigitNumber() {
+        assertThrows(IllegalArgumentException.class, () -> album.setReleaseYear(1969));
+    }
 }

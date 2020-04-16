@@ -64,15 +64,6 @@ public class Album extends Entity {
         if (null == recordNumber){
             throw new NullPointerException("Record Number can not be null");
         }
-        if (!StringUtils.isAlphanumeric(recordNumber
-                .replaceAll("/","")
-                .replaceAll("\\s+",""))){
-            throw new IllegalArgumentException("Illegal record number");
-        }
-        if(!StringUtils.startsWithAny(recordNumber, prefix)) {
-            throw new IllegalArgumentException("Illegal record number");
-        }
-
         for (int i = 0; i < 6; i++) {
             if (recordNumber.startsWith(prefix[i])){
                 String numberValue = recordNumber.substring(prefix[i].length())
@@ -81,6 +72,15 @@ public class Album extends Entity {
                     throw new IllegalArgumentException("Illegal record number");
                 }
             }
+            if (!StringUtils.isAlphanumeric(recordNumber
+                    .replaceAll("/","")
+                    .replaceAll("\\s+",""))){
+                throw new IllegalArgumentException("Illegal record number");
+            }
+            if(!StringUtils.startsWithAny(recordNumber, prefix)) {
+                throw new IllegalArgumentException("Illegal record number");
+            }
+
         }
 
 
@@ -140,7 +140,10 @@ public class Album extends Entity {
     }
 
     public void setReleaseYear(int releaseYear) {
+        if(releaseYear>1970)
         this.releaseYear = releaseYear;
+                else
+                    throw new IllegalArgumentException("Year should be greater than 1970");
     }
 
     public String getAlbumName() {
