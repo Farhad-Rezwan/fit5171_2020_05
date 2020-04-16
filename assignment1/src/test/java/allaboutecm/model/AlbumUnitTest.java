@@ -65,6 +65,7 @@ class AlbumUnitTest {
 
 
     //    test classes for getRecordNumber
+
     @Test
     public void getRecordNumberShouldReturnString() {
         assertEquals("ECM 1064/65", album.getRecordNumber());
@@ -142,7 +143,7 @@ class AlbumUnitTest {
     }
 
     @Test
-    public void twoMusicianNameShouldReferSameMusician() {
+    public void twoMusicianNamesShouldReferSameMusician() {
         Musician m = new Musician("Farhad Ullah Rezwan");
         Set<Musician> s = new HashSet<Musician>();
         s.add(m);
