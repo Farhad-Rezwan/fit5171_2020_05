@@ -6,6 +6,7 @@ import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.net.URL;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -140,7 +141,8 @@ public class Album extends Entity {
     }
 
     public void setReleaseYear(int releaseYear) {
-        if(releaseYear>1970)
+        int year = Calendar.getInstance().get(Calendar.YEAR);
+        if((releaseYear>1970) && releaseYear<= year)
         this.releaseYear = releaseYear;
                 else
                     throw new IllegalArgumentException("Year should be greater than 1970");
