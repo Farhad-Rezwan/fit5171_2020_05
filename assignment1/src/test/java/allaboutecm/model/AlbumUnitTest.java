@@ -87,7 +87,9 @@ class AlbumUnitTest {
     //    test cases for setRecordNumber
     /* ------------------------------------------------------------------------------------------
      * Todo: 1. With null argument, it should throw illegal argument exception
-     *       2. Should Only accept alphanumeric characters, and can contain space or forward slash.
+     *       2. Should Only accept alphanumeric characters, and can contain
+     *
+     *  or forward slash.
      *       3. Should only accept predefined prefix. (ie ECM, )
      *       4. Should Only Accept Suffix of Numbers.
      */
@@ -284,7 +286,7 @@ class AlbumUnitTest {
     @ParameterizedTest
     @ValueSource(strings = {"", " ", "    \t"})
     @DisplayName("Album name cannot be empty or blank")
-    public void albumNameConnotBeEmptyOrBlank(String arg) {
+    public void albumNameCannotBeEmptyOrBlank(String arg) {
         assertThrows(IllegalArgumentException.class, () -> album.setAlbumName(arg));
     }
 
@@ -298,7 +300,7 @@ class AlbumUnitTest {
 
     @Test
     @DisplayName("Input should be a 4 digit number")
-    public void releaseYearShouldBeBetween190AndCurrent() {
+    public void releaseYearShouldBeBetween1970AndCurrent() {
         assertThrows(IllegalArgumentException.class, () -> album.setReleaseYear(2021));
     }
 

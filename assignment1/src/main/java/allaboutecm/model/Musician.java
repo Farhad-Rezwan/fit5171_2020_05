@@ -2,7 +2,10 @@ package allaboutecm.model;
 
 import com.google.common.collect.Sets;
 
+import java.io.IOException;
+import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.UnknownHostException;
 import java.util.Objects;
 import java.util.Set;
 
@@ -24,9 +27,22 @@ public class Musician extends Entity {
     public Musician(String name) {
         this.name = name;
         this.musicianUrl = null;
+        //notBlank(name);
+        //notNull(name);
 
         albums = Sets.newLinkedHashSet();
                 //Linked Hash Set. Duplicates not allowed insertion order preserved.
+    }
+
+    public void setName(String name) {
+
+        if (name==null) {
+            throw new NullPointerException("musician name cannot be null or empty");
+        }
+
+        notNull(name);
+        notBlank(name);
+        this.name = name;
     }
 
     public String getName() {
@@ -38,6 +54,7 @@ public class Musician extends Entity {
     }
 
     public void setAlbums(Set<Album> albums) {
+
         this.albums = albums;
     }
 
@@ -58,7 +75,14 @@ public class Musician extends Entity {
         return musicianUrl;
     }
 
-    public void setMusicianUrl(URL musicianUrl) {
+    public void setMusicianUrl(URL musicianUrl) throws IOException {
+        HttpURLConnection connection = (HttpURLConnection)musicianUrl.openConnection();
+        connection.setRequestMethod("GET");
+        connection.connect();
+        if (connection.getResponseCode() == 401)
+        {
+            throw new UnknownHostException("album URL is invalid");
+        }
         this.musicianUrl = musicianUrl;
     }
 }
