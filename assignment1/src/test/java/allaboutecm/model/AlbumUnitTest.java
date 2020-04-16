@@ -158,6 +158,25 @@ class AlbumUnitTest {
     }
     //    test cases for getInstruments
 
+    @Test
+    public void twoMusicalInstrumentShouldReferSameMusicianAndSameInstrument() {
+        Musician m = new Musician("Farhad Ullah Rezwan");
+        MusicalInstrument i = new MusicalInstrument("Violin");
+        MusicianInstrument mi = new MusicianInstrument(m, i);
+
+        Set<MusicianInstrument> s = new HashSet<MusicianInstrument>();
+        s.add(mi);
+        album.setInstruments(s);
+
+        for (Iterator<MusicianInstrument> musicianInstruments = s.iterator(); musicianInstruments.hasNext();) {
+             MusicianInstrument f = musicianInstruments.next();
+             assertTrue(f.equals(new MusicianInstrument(new Musician("Farhad Ullah Rezwan"), new MusicalInstrument("Violin"))));
+
+        }
+
+
+    }
+
 
 
 
