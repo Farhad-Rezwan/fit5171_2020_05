@@ -1,34 +1,3 @@
-/*
-TDD Approach
-1. Add All tests
-2. Run All tests and confirm that the new test fails
-3. Write production code to cause the test to pass
-4. Run All tests again
-5. Refactor code if necessary
-6. Repeat
-
-how to system will behave, To give us the better idea, comes form the specification (Oracle), 1+1 returns 2,
-    Should return true when user have same email.
-
-
-
-
-
-
-Best Practice writing UNIT tests.
-1, Make Test Cases Independent of each other
-2, Make Test Cases Independent of execution order
-    Although, Can be specified in Junit
-3, Test only one thing in a test
-4, setup(), test(), tearDown() repeat
-5, Name tests sensibly & consistently
-6, Write descriptive messages in assertions or displays
-7, Categorise tests
-    * Unit-, Integration-, System-, or Short or Long-running
-8, Do not hard-code file location in FS
-9, Mock External Dependencies
-    * Files, database, URL, etc.
- */
 package allaboutecm.model;
 
 import allaboutecm.model.Album;
@@ -64,10 +33,6 @@ class AlbumUnitTest {
         assertNotNull(album, "Album object should not be null");
     }
 
-
-
-
-
     @DisplayName("Record number should return proper value while adding and updating")
     @Test
     public void recordNumberShouldReturnProperValueAddingAndUpdating() {
@@ -75,11 +40,7 @@ class AlbumUnitTest {
         assertTrue("EC2680".equals(album2.getRecordNumber()));
         album2.setRecordNumber("ECM 2680");
         assertTrue("ECM 2680".equals(album2.getRecordNumber()));
-
     }
-
-
-
 
     //    test cases for setRecordNumber
     /* ------------------------------------------------------------------------------------------
@@ -178,7 +139,7 @@ class AlbumUnitTest {
         }
     }
 
-    @DisplayName("Two Musical Instrument should refer to same musician and musician instrument")
+    @DisplayName("Two Musican Instrument should refer to same musician and musician instrument")
     @Test
     public void twoMusicalInstrumentShouldReferSameMusicianAndSameMusicalInstrumentOfMusicianInstrumentAttribute() {
         Musician m = new Musician("Farhad Ullah Rezwan");
