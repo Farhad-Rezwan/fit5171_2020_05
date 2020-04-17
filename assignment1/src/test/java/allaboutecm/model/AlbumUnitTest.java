@@ -43,18 +43,15 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLConnection;
-import java.net.UnknownHostException;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
+import java.net.*;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class AlbumUnitTest {
     private Album album;
+
+
 
     @BeforeEach
     public void setUp() {
@@ -207,27 +204,28 @@ class AlbumUnitTest {
 
     //    test cases for getAlbumURL
 
-
-
-    //    test cases for setAlbumURL
-    /* ------------------------------------------------------------------------------------------
-     * Todo: With null argument, it should throw illegal argument exception
-     */
-
+    @DisplayName("Should return proper albumURL when set from ECM website.")
     @Test
-    void getProductList() throws IOException {
-        URL url = new URL("https://www.google.com");
-        HttpURLConnection connection = (HttpURLConnection)url.openConnection();
-        connection.setRequestMethod("GET");
-        connection.connect();
-        int code = connection.getResponseCode();
-        System.out.println(code);
+    public void shouldReturnProperECMURL() throws IOException {
+        URL u = new URL("https://www.ecmrecords.com/catalogue/143038750696/the-koln-concert-keith-jarrett");
+        album.setAlbumURL(u);
+        assertEquals(album.getAlbumURL(),u);
     }
 
+    //    test cases for setAlbumURL
+
+    @DisplayName("Should Throw Unknown Host Exception when invalid URL is set")
     @Test
     public void shouldThrowUnknownHostExceptionWhenInvalidURLIsSet() {
         assertThrows(UnknownHostException.class, () -> album
                 .setAlbumURL(new URL("https://www.goasdfasdfasdfaogle.com")));
+    }
+
+    @DisplayName("should throw illegal argument exception when hostname does not contains \"ecmrecords\"")
+    @Test
+    public void shouldThrowIllegalArgumentExceptionWhenHostnameDoesNotContainEcmecords() {
+        assertThrows(IllegalArgumentException.class, () ->album
+                .setAlbumURL(new URL("https://soundcloud.com/roddyricch/the-box")));
     }
 
     @Test
@@ -237,6 +235,17 @@ class AlbumUnitTest {
     }
 
     //    test cases for getTracks
+
+    @Test
+    public void shouldThrowIllegalArgumentExceptionWhenLessThenOneTrackIsSet() {
+        List<String> trackList;
+        trackList = new ArrayList<>();
+        assertThrows(IllegalArgumentException.class, ()-> album.setTracks(trackList));
+    }
+
+
+    // WIll write for REGEX [\w\s]+  a-zA-Z to replace with words
+
 
     //    test cases for setTracks
     /* ------------------------------------------------------------------------------------------
