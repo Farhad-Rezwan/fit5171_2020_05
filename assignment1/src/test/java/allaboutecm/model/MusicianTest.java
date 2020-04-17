@@ -15,6 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import static org.apache.commons.lang3.Validate.notBlank;
 import static org.apache.commons.lang3.Validate.notNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class MusicianTest {
     private Musician mus;

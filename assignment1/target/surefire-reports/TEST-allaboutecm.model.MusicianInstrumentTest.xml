@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="allaboutecm.model.AlbumUnitTest" time="4.965" tests="35" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="allaboutecm.model.MusicianInstrumentTest" time="0.008" tests="7" errors="0" skipped="0" failures="0">
   <properties>
     <property name="gopherProxySet" value="false"/>
     <property name="awt.toolkit" value="sun.lwawt.macosx.LWCToolkit"/>
@@ -62,39 +62,11 @@
     <property name="java.class.version" value="52.0"/>
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
   </properties>
-  <testcase name="shouldAcceptProperRecordNumber(String)[1]" classname="allaboutecm.model.AlbumUnitTest" time="0.069"/>
-  <testcase name="shouldAcceptProperRecordNumber(String)[2]" classname="allaboutecm.model.AlbumUnitTest" time="0.001"/>
-  <testcase name="twoMusicianNamesShouldReferSameMusician" classname="allaboutecm.model.AlbumUnitTest" time="0.001"/>
-  <testcase name="shouldThrowExceptionWhenSetFeaturedMusicianSetToNull" classname="allaboutecm.model.AlbumUnitTest" time="0.003"/>
-  <testcase name="recordNumberShouldOnlyAcceptPredefinedPrefixWithSpace(String)[1]" classname="allaboutecm.model.AlbumUnitTest" time="0.001"/>
-  <testcase name="recordNumberShouldOnlyAcceptPredefinedPrefixWithSpace(String)[2]" classname="allaboutecm.model.AlbumUnitTest" time="0.001"/>
-  <testcase name="albumNameCannotBeEmptyOrBlank(String)[1]" classname="allaboutecm.model.AlbumUnitTest" time="0.001"/>
-  <testcase name="albumNameCannotBeEmptyOrBlank(String)[2]" classname="allaboutecm.model.AlbumUnitTest" time="0.001"/>
-  <testcase name="albumNameCannotBeEmptyOrBlank(String)[3]" classname="allaboutecm.model.AlbumUnitTest" time="0.001"/>
-  <testcase name="shouldThrowExceptionWhenAlbumURLSetToNull" classname="allaboutecm.model.AlbumUnitTest" time="0.001"/>
-  <testcase name="releaseYearShouldBeBetween1970AndCurrent" classname="allaboutecm.model.AlbumUnitTest" time="0.008"/>
-  <testcase name="shouldThrowIllegalArgumentExceptionWhenHostnameDoesNotContainEcmecords" classname="allaboutecm.model.AlbumUnitTest" time="1.894"/>
-  <testcase name="shouldThrowExceptionWhenRecordNumberSetToNull" classname="allaboutecm.model.AlbumUnitTest" time="0.002"/>
-  <testcase name="shouldThrowIllegalArgumentExceptionPrefixCaseIsNotFollowed" classname="allaboutecm.model.AlbumUnitTest" time="0.001"/>
-  <testcase name="twoMusicalInstrumentShouldReferSameMusicianAndSameMusicalInstrumentOfMusicianInstrumentAttribute" classname="allaboutecm.model.AlbumUnitTest" time="0.002"/>
-  <testcase name="test" classname="allaboutecm.model.AlbumUnitTest" time="0.001"/>
-  <testcase name="shouldReturnCorrectValueWhichIsSetForReleaseYear" classname="allaboutecm.model.AlbumUnitTest" time="0.001"/>
-  <testcase name="albumNameCannotBeNull" classname="allaboutecm.model.AlbumUnitTest" time="0.001"/>
-  <testcase name="shouldConstructAlbum" classname="allaboutecm.model.AlbumUnitTest" time="0.002"/>
-  <testcase name="shouldReturnProperECMURL" classname="allaboutecm.model.AlbumUnitTest" time="2.646"/>
-  <testcase name="sameNameAndNumberMeansSameAlbum" classname="allaboutecm.model.AlbumUnitTest" time="0"/>
-  <testcase name="shouldThrowExceptionWhenAlbumNameSetToNull" classname="allaboutecm.model.AlbumUnitTest" time="0.001"/>
-  <testcase name="recordNumberShouldOnlyAcceptSuffixOfNumber(String)[1]" classname="allaboutecm.model.AlbumUnitTest" time="0.002"/>
-  <testcase name="recordNumberShouldOnlyAcceptSuffixOfNumber(String)[2]" classname="allaboutecm.model.AlbumUnitTest" time="0.001"/>
-  <testcase name="recordNumberShouldReturnProperValueAddingAndUpdating" classname="allaboutecm.model.AlbumUnitTest" time="0.001"/>
-  <testcase name="shouldThrowIllegalArgumentExceptionWhenLessThenOneTrackIsSet" classname="allaboutecm.model.AlbumUnitTest" time="0.001"/>
-  <testcase name="shouldThrowExceptionWhenTracksSetToNull" classname="allaboutecm.model.AlbumUnitTest" time="0.001"/>
-  <testcase name="recordNumberCanOnlyAcceptAlphanumericWithSpaceORWithForwardSlash(String)[1]" classname="allaboutecm.model.AlbumUnitTest" time="0.001"/>
-  <testcase name="recordNumberCanOnlyAcceptAlphanumericWithSpaceORWithForwardSlash(String)[2]" classname="allaboutecm.model.AlbumUnitTest" time="0.001"/>
-  <testcase name="recordNumberCanOnlyAcceptAlphanumericWithSpaceORWithForwardSlash(String)[3]" classname="allaboutecm.model.AlbumUnitTest" time="0"/>
-  <testcase name="shouldThrowUnknownHostExceptionWhenInvalidURLIsSet" classname="allaboutecm.model.AlbumUnitTest" time="0.252"/>
-  <testcase name="shouldThrowExceptionWhenSetInstrumentsSetToNull" classname="allaboutecm.model.AlbumUnitTest" time="0.001"/>
-  <testcase name="checkAlbumName(String)[1]" classname="allaboutecm.model.AlbumUnitTest" time="0.001"/>
-  <testcase name="checkAlbumName(String)[2]" classname="allaboutecm.model.AlbumUnitTest" time="0.001"/>
-  <testcase name="checkAlbumName(String)[3]" classname="allaboutecm.model.AlbumUnitTest" time="0.001"/>
+  <testcase name="musicalInstrumentCannotBeNull" classname="allaboutecm.model.MusicianInstrumentTest" time="0.001"/>
+  <testcase name="musicianCannotBeNull" classname="allaboutecm.model.MusicianInstrumentTest" time="0"/>
+  <testcase name="sameMusicianAndMusicalInstrumentMeansSameMusicianInstrument" classname="allaboutecm.model.MusicianInstrumentTest" time="0"/>
+  <testcase name="shouldGetMusician" classname="allaboutecm.model.MusicianInstrumentTest" time="0"/>
+  <testcase name="shouldGetMusicalInstrument" classname="allaboutecm.model.MusicianInstrumentTest" time="0"/>
+  <testcase name="testHashCode" classname="allaboutecm.model.MusicianInstrumentTest" time="0.001"/>
+  <testcase name="testEquals" classname="allaboutecm.model.MusicianInstrumentTest" time="0.001"/>
 </testsuite>
