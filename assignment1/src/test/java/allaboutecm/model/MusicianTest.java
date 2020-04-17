@@ -37,19 +37,16 @@ public class MusicianTest {
     public void MusicianNameCannotBeEmptyOrBlank(String arg) {
         assertThrows(IllegalArgumentException.class, () -> mus.setName(arg));
     }
+    @Test
+    @DisplayName("should return a musician name")
+    public void shouldGetMusicianName() {
+        Musician mus2 = new Musician("Lucy Railton");
+        assertTrue(mus.getName().equals(mus2.getName()),"getName method for Musician class executed successfully");
+    }
 
     //test cases for musician URL
     //Todo: With null argument, it should throw illegal argument exception
 
-    @Test
-    void getMusicianURL1() throws IOException {
-        URL url1 = new URL("https://www.google.com");
-        HttpURLConnection connection = (HttpURLConnection) url1.openConnection();
-        connection.setRequestMethod("GET");
-        connection.connect();
-        int code1 = connection.getResponseCode();
-        System.out.println(code1);
-    }
 
         @Test
         @DisplayName("If wrong musician URL is entered which is not responsive an exception should be thrown")
