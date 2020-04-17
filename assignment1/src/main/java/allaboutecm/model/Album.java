@@ -134,6 +134,10 @@ public class Album extends Entity {
         if (connection.getResponseCode() == 401){
             throw new UnknownHostException("album URL is invalid");
         }
+        if (!connection.getURL().getHost().contains("ecmrecords")) {
+            throw new IllegalArgumentException();
+        }
+
         this.albumURL = albumURL;
     }
 
@@ -145,6 +149,9 @@ public class Album extends Entity {
         if (null == tracks) {
             throw new NullPointerException("Tracks list cannot be null");
         }
+        if (tracks.size() < 1) {
+            throw new IllegalArgumentException("Tracks list cannot be empty");
+        }
         this.tracks = tracks;
     }
 
@@ -155,9 +162,9 @@ public class Album extends Entity {
     public void setReleaseYear(int releaseYear) {
         int year = Calendar.getInstance().get(Calendar.YEAR);
         if((releaseYear>1970) && releaseYear<= year)
-        this.releaseYear = releaseYear;
-                else
-                    throw new IllegalArgumentException("Year should be greater than 1970");
+            this.releaseYear = releaseYear;
+        else
+            throw new IllegalArgumentException("Year should be greater than 1970");
     }
 
     public String getAlbumName() {
