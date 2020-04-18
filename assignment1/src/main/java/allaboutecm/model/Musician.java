@@ -25,13 +25,13 @@ public class Musician extends Entity {
     private Set<Album> albums;
 
     public Musician(String name) {
+        notBlank(name);
+        notNull(name);
+
         this.name = name;
         this.musicianUrl = null;
-        //notBlank(name);
-        //notNull(name);
 
         albums = Sets.newLinkedHashSet();
-                //Linked Hash Set. Duplicates not allowed insertion order preserved.
     }
 
     public void setName(String name) {
