@@ -206,6 +206,10 @@ class AlbumUnitTest {
 
 
     // WIll write for REGEX [\w\s]+  a-zA-Z to replace with words
+    @Test
+    public void shouldAcceptProperTrackName () {
+        
+    }
 
 
     //    test cases for setTracks
