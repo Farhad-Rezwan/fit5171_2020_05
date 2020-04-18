@@ -57,20 +57,6 @@ public class Musician extends Entity {
 
         this.albums = albums;
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Musician that = (Musician) o;
-        return Objects.equals(name, that.name);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name);
-    }
-
     public URL getMusicianUrl() {
         return musicianUrl;
     }
@@ -85,4 +71,19 @@ public class Musician extends Entity {
         }
         this.musicianUrl = musicianUrl;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Musician that = (Musician) o;
+        return Objects.equals(name, that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
+
+
 }

@@ -39,7 +39,12 @@ public class Album extends Entity {
 
     private URL albumURL;
 
+
+
     private List<String> tracks;
+    private String genre;
+    private String releaseFormat;
+    private Set<Review> albumReview;
 
     public Album(int releaseYear, String recordNumber, String albumName) {
         notNull(recordNumber);
@@ -137,8 +142,10 @@ public class Album extends Entity {
         if (!connection.getURL().getHost().contains("ecmrecords")) {
             throw new IllegalArgumentException();
         }
+        if (connection.getResponseCode() == 200) {
+            this.albumURL = albumURL;
+        }
 
-        this.albumURL = albumURL;
     }
 
     public List<String> getTracks() {
