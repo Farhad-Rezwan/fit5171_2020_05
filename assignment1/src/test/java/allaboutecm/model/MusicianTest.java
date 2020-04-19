@@ -39,6 +39,14 @@ public class MusicianTest {
         assertThrows(IllegalArgumentException.class, () -> mus.setName(arg));
     }
 
+    @DisplayName("Should accept proper Musician name")
+    @ParameterizedTest
+    @ValueSource(strings = {"Gianluigi Trovesi", "Gianni Coscia", "Herman Hupfeld"})
+    public void shouldAcceptProperMusicianName(String args) {
+        mus.setName(args);
+        assertTrue(args.equals(mus.getName()));
+    }
+
     @Test
     @DisplayName("Should reject improper Musician name with multiple invalid letters")
     @ParameterizedTest

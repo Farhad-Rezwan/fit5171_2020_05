@@ -223,8 +223,21 @@ class AlbumUnitTest {
     }
 
     //    test cases for getReleaseYear
+    @Test
+    @DisplayName("to check if the set value is correctly returned")
+    public void shouldReturnCorrectValueWhichIsSetForReleaseYear()
+    {
+        assertEquals(1975, album.getReleaseYear());
+    }
+
 
     //    test cases for setReleaseYear
+    @Test
+    @DisplayName("Input should be a number(year)between 1970 and current.")
+    public void releaseYearShouldBeBetween1970AndCurrent() {
+        assertThrows(IllegalArgumentException.class, () -> album.setReleaseYear(2021));
+    }
+
     /* ------------------------------------------------------------------------------------------
      * Todo: With null argument, it should throw illegal argument exception
      */
@@ -271,18 +284,27 @@ class AlbumUnitTest {
     }
 
 
-    @Test
-    @DisplayName("Input should be a 4 digit number")
-    public void releaseYearShouldBeBetween1970AndCurrent() {
-        assertThrows(IllegalArgumentException.class, () -> album.setReleaseYear(2021));
+
+    @DisplayName("Should reject improper album name with one or multiple letters")
+    @ParameterizedTest
+    @ValueSource(strings = {"1212", "@", "$", "_", "   F", "F   ", "f12"})
+    public void shouldThrowIllegalArgumentExceptionWhenAlbumNameIsSetALetter(String args) {
+        assertThrows(IllegalArgumentException.class, () -> album.setAlbumName(args));
     }
 
-    @Test
-    @DisplayName("to check if the set value is correctly returned")
-    public void shouldReturnCorrectValueWhichIsSetForReleaseYear()
-    {
-        assertEquals(1975, album.getReleaseYear());
+    @DisplayName("Should accept proper album name")
+    @ParameterizedTest
+    @ValueSource(strings = {"The Köln Concert", "LA MISTERIOSA MUSICA DELLA REGINA LOANA", "CHARMEDITERRANÉEN", "CONTE DE L'INCROYABLE AMOUR",})
+    public void shouldAcceptProperAlbumName(String args) {
+        album.setAlbumName(args);
+        assertTrue(args.equals(album.getAlbumName()));
     }
+
+
+
+
+
+
 
 
 }

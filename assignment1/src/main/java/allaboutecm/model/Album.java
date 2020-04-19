@@ -182,6 +182,9 @@ public class Album extends Entity {
         if (null == albumName){
             throw new NullPointerException("album name cannot be null or empty");
         }
+        if (!albumName.matches("^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z])$")) {
+            throw new IllegalArgumentException("Not a valid album name");
+        }
         notNull(albumName);
         notBlank(albumName);
 
