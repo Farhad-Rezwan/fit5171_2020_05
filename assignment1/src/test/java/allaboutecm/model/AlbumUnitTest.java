@@ -190,6 +190,7 @@ class AlbumUnitTest {
     }
 
     @Test
+    @DisplayName("Null pointer exception should be thrown if Album URL is set null")
     public void shouldThrowExceptionWhenAlbumURLSetToNull() {
         NullPointerException e = assertThrows(NullPointerException.class, () -> album.setAlbumURL(null));
         assertEquals("Album URL cannot be null", e.getMessage());
@@ -198,6 +199,7 @@ class AlbumUnitTest {
     //    test cases for getTracks
 
     @Test
+    @DisplayName("Should throw Illegal Argument Exception if less than one track is set")
     public void shouldThrowIllegalArgumentExceptionWhenLessThenOneTrackIsSet() {
         List<String> trackList;
         trackList = new ArrayList<>();
@@ -206,10 +208,7 @@ class AlbumUnitTest {
 
 
     // WIll write for REGEX [\w\s]+  a-zA-Z to replace with words
-    @Test
-    public void shouldAcceptProperTrackName () {
-        
-    }
+
 
 
     //    test cases for setTracks
@@ -248,7 +247,7 @@ class AlbumUnitTest {
         assertThrows(NullPointerException.class, () -> album.setAlbumName(null));
     }
 
-
+    @DisplayName("")
     @ParameterizedTest
     @ValueSource(strings = { "Oded Tzur", "Mal Waldron Trio", "Julia Hülsmann Quartet" })
     public void checkAlbumName(String candidate){

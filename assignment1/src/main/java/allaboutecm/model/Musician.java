@@ -24,25 +24,34 @@ public class Musician extends Entity {
 
     private Set<Album> albums;
 
+
     public Musician(String name) {
+
         notBlank(name);
         notNull(name);
 
+
         this.name = name;
         this.musicianUrl = null;
+
 
         albums = Sets.newLinkedHashSet();
     }
 
     public void setName(String name) {
 
+
         if (name==null) {
             throw new NullPointerException("musician name cannot be null or empty");
+        }
+        if (!name.matches("^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$")) {
+            throw new IllegalArgumentException("Not a valid track name");
         }
 
         notNull(name);
         notBlank(name);
         this.name = name;
+
     }
 
     public String getName() {

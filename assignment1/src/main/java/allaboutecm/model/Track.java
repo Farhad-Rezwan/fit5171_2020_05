@@ -2,7 +2,7 @@ package allaboutecm.model;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
-import javafx.util.Pair;
+//import java.util.Pair;
 import org.apache.commons.lang3.ObjectUtils;
 
 import java.net.URL;

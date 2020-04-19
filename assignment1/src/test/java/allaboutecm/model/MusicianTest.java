@@ -26,7 +26,7 @@ public class MusicianTest {
     }
 
     @Test
-    @DisplayName("Musician name cannot be null")
+    @DisplayName("Musician name cannot be null and should throw null pointer exception")
     public void musicianNameCannotBeNull()
     {
         assertThrows(NullPointerException.class, () -> mus.setName(null));
@@ -38,6 +38,16 @@ public class MusicianTest {
     public void MusicianNameCannotBeEmptyOrBlank(String arg) {
         assertThrows(IllegalArgumentException.class, () -> mus.setName(arg));
     }
+
+    @Test
+    @DisplayName("Should reject improper Musician name with multiple invalid letters")
+    @ParameterizedTest
+    @ValueSource(strings = {"1212", "@", "$", "_", "   F", "F   ", "f12"})
+    public void shouldThrowIllegalArgumentExceptionWhenTrackNameIsSetALetter(String args)
+    {
+        assertThrows(IllegalArgumentException.class, () -> mus.setName(args));
+    }
+
     @Test
     @DisplayName("should return a musician name")
     public void shouldGetMusicianName() {
