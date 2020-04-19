@@ -45,7 +45,7 @@ public class Musician extends Entity {
             throw new NullPointerException("musician name cannot be null or empty");
         }
         if (!name.matches("^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$")) {
-            throw new IllegalArgumentException("Not a valid track name");
+            throw new IllegalArgumentException("Not a valid musician name");
         }
 
         notNull(name);

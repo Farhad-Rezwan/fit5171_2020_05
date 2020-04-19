@@ -1,5 +1,6 @@
 package allaboutecm.model;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -14,6 +15,7 @@ public class MusicalInstrumentUnitTest {
     private MusicalInstrument musI;
 
 
+    @BeforeEach
     public void setup() {
         MusicalInstrument musI = new MusicalInstrument("Piano");
     }
@@ -31,6 +33,16 @@ public class MusicalInstrumentUnitTest {
 
         musI.setName(args);
         assertThrows(IllegalArgumentException.class, () -> musI.getName());
+    }
+
+
+    @DisplayName("Should accept proper musical instrument name")
+    @ParameterizedTest
+    @ValueSource(strings = {"Piano", "Accordion", "Piccolo Clarinet"})
+    public void shouldAcceptProperMusicalInstrumentName(String args)
+    {
+        musI.setName(args);
+        assertTrue(args.equals(musI.getName()));
     }
 
     @DisplayName("Should accept proper musical instrument name")
