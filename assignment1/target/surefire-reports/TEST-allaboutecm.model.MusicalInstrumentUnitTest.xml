@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="allaboutecm.model.AlbumUnitTest" time="4.891" tests="40" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="allaboutecm.model.MusicalInstrumentUnitTest" time="0.021" tests="17" errors="0" skipped="0" failures="0">
   <properties>
     <property name="gopherProxySet" value="false"/>
     <property name="awt.toolkit" value="sun.lwawt.macosx.LWCToolkit"/>
@@ -62,44 +62,21 @@
     <property name="java.class.version" value="52.0"/>
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
   </properties>
-  <testcase name="shouldAcceptProperRecordNumber(String)[1]" classname="allaboutecm.model.AlbumUnitTest" time="0.01"/>
-  <testcase name="shouldAcceptProperRecordNumber(String)[2]" classname="allaboutecm.model.AlbumUnitTest" time="0.001"/>
-  <testcase name="twoMusicianNamesShouldReferSameMusician" classname="allaboutecm.model.AlbumUnitTest" time="0.001"/>
-  <testcase name="shouldThrowExceptionWhenSetFeaturedMusicianSetToNull" classname="allaboutecm.model.AlbumUnitTest" time="0"/>
-  <testcase name="shouldAcceptProperAlbumName(String)[1]" classname="allaboutecm.model.AlbumUnitTest" time="0.001"/>
-  <testcase name="shouldAcceptProperAlbumName(String)[2]" classname="allaboutecm.model.AlbumUnitTest" time="0.001"/>
-  <testcase name="shouldAcceptProperAlbumName(String)[3]" classname="allaboutecm.model.AlbumUnitTest" time="0.001"/>
-  <testcase name="shouldAcceptProperAlbumName(String)[4]" classname="allaboutecm.model.AlbumUnitTest" time="0"/>
-  <testcase name="recordNumberShouldOnlyAcceptPredefinedPrefixWithSpace(String)[1]" classname="allaboutecm.model.AlbumUnitTest" time="0.002"/>
-  <testcase name="recordNumberShouldOnlyAcceptPredefinedPrefixWithSpace(String)[2]" classname="allaboutecm.model.AlbumUnitTest" time="0"/>
-  <testcase name="albumNameCannotBeEmptyOrBlank(String)[1]" classname="allaboutecm.model.AlbumUnitTest" time="0"/>
-  <testcase name="albumNameCannotBeEmptyOrBlank(String)[2]" classname="allaboutecm.model.AlbumUnitTest" time="0"/>
-  <testcase name="albumNameCannotBeEmptyOrBlank(String)[3]" classname="allaboutecm.model.AlbumUnitTest" time="0"/>
-  <testcase name="shouldThrowExceptionWhenAlbumURLSetToNull" classname="allaboutecm.model.AlbumUnitTest" time="0"/>
-  <testcase name="releaseYearShouldBeBetween1970AndCurrent" classname="allaboutecm.model.AlbumUnitTest" time="0.007"/>
-  <testcase name="shouldThrowIllegalArgumentExceptionWhenHostnameDoesNotContainEcmecords" classname="allaboutecm.model.AlbumUnitTest" time="1.555"/>
-  <testcase name="shouldThrowExceptionWhenRecordNumberSetToNull" classname="allaboutecm.model.AlbumUnitTest" time="0.001"/>
-  <testcase name="shouldThrowIllegalArgumentExceptionPrefixCaseIsNotFollowed" classname="allaboutecm.model.AlbumUnitTest" time="0.002"/>
-  <testcase name="twoMusicalInstrumentShouldReferSameMusicianAndSameMusicalInstrumentOfMusicianInstrumentAttribute" classname="allaboutecm.model.AlbumUnitTest" time="0.002"/>
-  <testcase name="test" classname="allaboutecm.model.AlbumUnitTest" time="0.001"/>
-  <testcase name="shouldReturnCorrectValueWhichIsSetForReleaseYear" classname="allaboutecm.model.AlbumUnitTest" time="0"/>
-  <testcase name="shouldConstructAlbum" classname="allaboutecm.model.AlbumUnitTest" time="0"/>
-  <testcase name="shouldReturnProperECMURL" classname="allaboutecm.model.AlbumUnitTest" time="3.259"/>
-  <testcase name="sameNameAndNumberMeansSameAlbum" classname="allaboutecm.model.AlbumUnitTest" time="0"/>
-  <testcase name="shouldThrowExceptionWhenAlbumNameSetToNull" classname="allaboutecm.model.AlbumUnitTest" time="0.001"/>
-  <testcase name="shouldThrowIllegalArgumentExceptionWhenAlbumNameIsSetALetter(String)[1]" classname="allaboutecm.model.AlbumUnitTest" time="0.001"/>
-  <testcase name="shouldThrowIllegalArgumentExceptionWhenAlbumNameIsSetALetter(String)[2]" classname="allaboutecm.model.AlbumUnitTest" time="0.001"/>
-  <testcase name="shouldThrowIllegalArgumentExceptionWhenAlbumNameIsSetALetter(String)[3]" classname="allaboutecm.model.AlbumUnitTest" time="0"/>
-  <testcase name="shouldThrowIllegalArgumentExceptionWhenAlbumNameIsSetALetter(String)[4]" classname="allaboutecm.model.AlbumUnitTest" time="0.001"/>
-  <testcase name="shouldThrowIllegalArgumentExceptionWhenAlbumNameIsSetALetter(String)[5]" classname="allaboutecm.model.AlbumUnitTest" time="0.001"/>
-  <testcase name="shouldThrowIllegalArgumentExceptionWhenAlbumNameIsSetALetter(String)[6]" classname="allaboutecm.model.AlbumUnitTest" time="0.001"/>
-  <testcase name="shouldThrowIllegalArgumentExceptionWhenAlbumNameIsSetALetter(String)[7]" classname="allaboutecm.model.AlbumUnitTest" time="0"/>
-  <testcase name="recordNumberShouldOnlyAcceptSuffixOfNumber(String)[1]" classname="allaboutecm.model.AlbumUnitTest" time="0"/>
-  <testcase name="recordNumberShouldOnlyAcceptSuffixOfNumber(String)[2]" classname="allaboutecm.model.AlbumUnitTest" time="0.001"/>
-  <testcase name="recordNumberShouldReturnProperValueAddingAndUpdating" classname="allaboutecm.model.AlbumUnitTest" time="0"/>
-  <testcase name="recordNumberCanOnlyAcceptAlphanumericWithSpaceORWithForwardSlash(String)[1]" classname="allaboutecm.model.AlbumUnitTest" time="0.001"/>
-  <testcase name="recordNumberCanOnlyAcceptAlphanumericWithSpaceORWithForwardSlash(String)[2]" classname="allaboutecm.model.AlbumUnitTest" time="0"/>
-  <testcase name="recordNumberCanOnlyAcceptAlphanumericWithSpaceORWithForwardSlash(String)[3]" classname="allaboutecm.model.AlbumUnitTest" time="0"/>
-  <testcase name="shouldThrowUnknownHostExceptionWhenInvalidURLIsSet" classname="allaboutecm.model.AlbumUnitTest" time="0.001"/>
-  <testcase name="shouldThrowExceptionWhenSetInstrumentsSetToNull" classname="allaboutecm.model.AlbumUnitTest" time="0.001"/>
+  <testcase name="shouldAcceptProperTrackName(String)[1]" classname="allaboutecm.model.MusicalInstrumentUnitTest" time="0.001"/>
+  <testcase name="shouldAcceptProperTrackName(String)[2]" classname="allaboutecm.model.MusicalInstrumentUnitTest" time="0"/>
+  <testcase name="shouldAcceptProperTrackName(String)[3]" classname="allaboutecm.model.MusicalInstrumentUnitTest" time="0"/>
+  <testcase name="shouldAcceptProperTrackName(String)[4]" classname="allaboutecm.model.MusicalInstrumentUnitTest" time="0"/>
+  <testcase name="shouldAcceptProperTrackName(String)[5]" classname="allaboutecm.model.MusicalInstrumentUnitTest" time="0"/>
+  <testcase name="shouldAcceptProperMusicalInstrumentName(String)[1]" classname="allaboutecm.model.MusicalInstrumentUnitTest" time="0.001"/>
+  <testcase name="shouldAcceptProperMusicalInstrumentName(String)[2]" classname="allaboutecm.model.MusicalInstrumentUnitTest" time="0.001"/>
+  <testcase name="shouldAcceptProperMusicalInstrumentName(String)[3]" classname="allaboutecm.model.MusicalInstrumentUnitTest" time="0"/>
+  <testcase name="shouldConstructAlbum" classname="allaboutecm.model.MusicalInstrumentUnitTest" time="0"/>
+  <testcase name="shouldThrowIllegalArgumentExceptionWhenAlbumNameIsSetALetter(String)[1]" classname="allaboutecm.model.MusicalInstrumentUnitTest" time="0"/>
+  <testcase name="shouldThrowIllegalArgumentExceptionWhenAlbumNameIsSetALetter(String)[2]" classname="allaboutecm.model.MusicalInstrumentUnitTest" time="0"/>
+  <testcase name="shouldThrowIllegalArgumentExceptionWhenAlbumNameIsSetALetter(String)[3]" classname="allaboutecm.model.MusicalInstrumentUnitTest" time="0"/>
+  <testcase name="shouldThrowIllegalArgumentExceptionWhenAlbumNameIsSetALetter(String)[4]" classname="allaboutecm.model.MusicalInstrumentUnitTest" time="0.001"/>
+  <testcase name="shouldThrowIllegalArgumentExceptionWhenAlbumNameIsSetALetter(String)[5]" classname="allaboutecm.model.MusicalInstrumentUnitTest" time="0.001"/>
+  <testcase name="shouldThrowIllegalArgumentExceptionWhenAlbumNameIsSetALetter(String)[6]" classname="allaboutecm.model.MusicalInstrumentUnitTest" time="0.001"/>
+  <testcase name="shouldThrowIllegalArgumentExceptionWhenAlbumNameIsSetALetter(String)[7]" classname="allaboutecm.model.MusicalInstrumentUnitTest" time="0.001"/>
+  <testcase name="shouldThrowNullPointerExceptionWhenMusicalInstrumentNameSetNull" classname="allaboutecm.model.MusicalInstrumentUnitTest" time="0"/>
 </testsuite>

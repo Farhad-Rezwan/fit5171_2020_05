@@ -41,10 +41,12 @@ public class Album extends Entity {
 
 
 
-    private List<String> tracks;
+
+    private Set<Track> tracks;
+    private Set<Review> albumReview;
     private String genre;
     private String releaseFormat;
-    private Set<Review> albumReview;
+
 
     public Album(int releaseYear, String recordNumber, String albumName) {
         notNull(recordNumber);
@@ -61,7 +63,7 @@ public class Album extends Entity {
 
         featuredMusicians = Sets.newHashSet();
         instruments = Sets.newHashSet();
-        tracks = Lists.newArrayList();
+        tracks = Sets.newHashSet();
 
 
     }
@@ -148,19 +150,7 @@ public class Album extends Entity {
 
     }
 
-    public List<String> getTracks() {
-        return tracks;
-    }
 
-    public void setTracks(List<String> tracks) {
-        if (null == tracks) {
-            throw new NullPointerException("Tracks list cannot be null");
-        }
-        if (tracks.size() < 1) {
-            throw new IllegalArgumentException("Tracks list cannot be empty");
-        }
-        this.tracks = tracks;
-    }
 
     public int getReleaseYear() {
         return releaseYear;
@@ -182,13 +172,45 @@ public class Album extends Entity {
         if (null == albumName){
             throw new NullPointerException("album name cannot be null or empty");
         }
-        if (!albumName.matches("^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z])$")) {
+        if (!albumName.matches("^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$")) {
             throw new IllegalArgumentException("Not a valid album name");
         }
         notNull(albumName);
         notBlank(albumName);
 
         this.albumName = albumName;
+    }
+
+    public Set<Track> getTracks() {
+        return tracks;
+    }
+
+    public void setTracks(Set<Track> tracks) {
+        this.tracks = tracks;
+    }
+
+    public Set<Review> getAlbumReview() {
+        return albumReview;
+    }
+
+    public void setAlbumReview(Set<Review> albumReview) {
+        this.albumReview = albumReview;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public String getReleaseFormat() {
+        return releaseFormat;
+    }
+
+    public void setReleaseFormat(String releaseFormat) {
+        this.releaseFormat = releaseFormat;
     }
 
     @Override

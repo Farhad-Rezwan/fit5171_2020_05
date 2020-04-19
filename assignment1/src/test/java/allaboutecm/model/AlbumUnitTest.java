@@ -1,13 +1,8 @@
 package allaboutecm.model;
 
-import allaboutecm.model.Album;
-import org.apache.commons.lang3.ObjectUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.checkerframework.checker.units.qual.s;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.RegisterExtension;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -33,6 +28,13 @@ class AlbumUnitTest {
         assertNotNull(album, "Album object should not be null");
     }
 
+    @Test
+    public void sameNameAndNumberMeansSameAlbum() {
+        Album album1 = new Album(1975, "ECM 1064/65", "The Köln Concert");
+
+        assertEquals(album, album1);
+    }
+
     @DisplayName("Record number should return proper value while adding and updating")
     @Test
     public void recordNumberShouldReturnProperValueAddingAndUpdating() {
@@ -41,16 +43,6 @@ class AlbumUnitTest {
         album2.setRecordNumber("ECM 2680");
         assertTrue("ECM 2680".equals(album2.getRecordNumber()));
     }
-
-    //    test cases for setRecordNumber
-    /* ------------------------------------------------------------------------------------------
-     * Todo: 1. With null argument, it should throw illegal argument exception
-     *       2. Should Only accept alphanumeric characters, and can contain
-     *
-     *  or forward slash.
-     *       3. Should only accept predefined prefix. (ie ECM, )
-     *       4. Should Only Accept Suffix of Numbers.
-     */
 
     @DisplayName("Record number with null argument should throw NullPointerException")
     @Test
@@ -91,7 +83,7 @@ class AlbumUnitTest {
 
     @DisplayName("Record Number can only accept suffix of a number which might contain forward-slash like  \"ECM 1064/65\"")
     @ParameterizedTest
-    @ValueSource(strings = {"ECM 1064/65", "XtraWatt 12"})
+    @ValueSource(strings = {"ECM 1064/65", "XtraWatt 12/223"})
     public void shouldAcceptProperRecordNumber(String goodRecordNumbers) {
         album.setRecordNumber(goodRecordNumbers);
         assertTrue(goodRecordNumbers == album.getRecordNumber());
@@ -104,25 +96,11 @@ class AlbumUnitTest {
         assertTrue("Illegal record number" == e.getMessage());
     }
 
-
-    //    test cases for setAlbumName
-    /* ------------------------------------------------------------------------------------------
-     * Todo: With null argument, it should throw illegal argument exception
-     */
-
-    @DisplayName("Should throw exceptions when pass a null into album name to setAlbumName function")
-    @Test
-    public void shouldThrowExceptionWhenAlbumNameSetToNull() {
-        NullPointerException e = assertThrows(NullPointerException.class, () -> album.setAlbumName(null));
-        assertEquals("album name cannot be null or empty", e.getMessage());
-    }
-
     @DisplayName("Should throw NullPointerException when featured musician is set to null")
     @Test
     public void shouldThrowExceptionWhenSetFeaturedMusicianSetToNull() {
         NullPointerException e = assertThrows(NullPointerException.class, () -> album.setFeaturedMusicians(null));
         assertEquals("Featured musician list cannot be null", e.getMessage());
-
     }
 
     @DisplayName("Same name for two musician should refer same Musician object.")
@@ -163,17 +141,6 @@ class AlbumUnitTest {
         assertEquals("Instruments list cannot be null", e.getMessage());
     }
 
-    //    test cases for getAlbumURL
-
-    @DisplayName("Should return proper albumURL when set from ECM website.")
-    @Test
-    public void shouldReturnProperECMURL() throws IOException {
-        URL u = new URL("https://www.ecmrecords.com/catalogue/143038750696/the-koln-concert-keith-jarrett");
-        album.setAlbumURL(u);
-        assertEquals(album.getAlbumURL(),u);
-    }
-
-    //    test cases for setAlbumURL
 
     @DisplayName("Should Throw Unknown Host Exception when invalid URL is set")
     @Test
@@ -196,33 +163,34 @@ class AlbumUnitTest {
         assertEquals("Album URL cannot be null", e.getMessage());
     }
 
-    //    test cases for getTracks
-
+    @DisplayName("Should return proper albumURL when set from ECM website.")
     @Test
-    @DisplayName("Should throw Illegal Argument Exception if less than one track is set")
-    public void shouldThrowIllegalArgumentExceptionWhenLessThenOneTrackIsSet() {
-        List<String> trackList;
-        trackList = new ArrayList<>();
-        assertThrows(IllegalArgumentException.class, ()-> album.setTracks(trackList));
+    public void shouldReturnProperECMURL() throws IOException {
+        URL u = new URL("https://www.ecmrecords.com/catalogue/143038750696/the-koln-concert-keith-jarrett");
+        album.setAlbumURL(u);
+        assertEquals(album.getAlbumURL(),u);
     }
 
-
-    // WIll write for REGEX [\w\s]+  a-zA-Z to replace with words
-
-
-
-    //    test cases for setTracks
-    /* ------------------------------------------------------------------------------------------
-     * Todo: With null argument, it should throw illegal argument exception
-     */
+//    @Test
+//    @DisplayName("Should throw Illegal Argument Exception if less than one track is set")
+//    public void shouldThrowIllegalArgumentExceptionWhenLessThenOneTrackIsSet() {
+//        List<String> trackList;
+//        trackList = new ArrayList<>();
+//        assertThrows(IllegalArgumentException.class, ()-> album.setTracks(trackList));
+//    }
+//
+//    @Test
+//    public void shouldThrowExceptionWhenTracksSetToNull() {
+//        NullPointerException e = assertThrows(NullPointerException.class, () -> album.setTracks(null));
+//        assertEquals("Tracks list cannot be null", e.getMessage());
+//    }
 
     @Test
-    public void shouldThrowExceptionWhenTracksSetToNull() {
-        NullPointerException e = assertThrows(NullPointerException.class, () -> album.setTracks(null));
-        assertEquals("Tracks list cannot be null", e.getMessage());
+    @DisplayName("Input should be a number(year)between 1970 and current.")
+    public void releaseYearShouldBeBetween1970AndCurrent() {
+        assertThrows(IllegalArgumentException.class, () -> album.setReleaseYear(2021));
     }
 
-    //    test cases for getReleaseYear
     @Test
     @DisplayName("to check if the set value is correctly returned")
     public void shouldReturnCorrectValueWhichIsSetForReleaseYear()
@@ -231,43 +199,12 @@ class AlbumUnitTest {
     }
 
 
-    //    test cases for setReleaseYear
+    @DisplayName("Should throw exceptions when pass a null into album name to setAlbumName function")
     @Test
-    @DisplayName("Input should be a number(year)between 1970 and current.")
-    public void releaseYearShouldBeBetween1970AndCurrent() {
-        assertThrows(IllegalArgumentException.class, () -> album.setReleaseYear(2021));
+    public void shouldThrowExceptionWhenAlbumNameSetToNull() {
+        NullPointerException e = assertThrows(NullPointerException.class, () -> album.setAlbumName(null));
+        assertEquals("album name cannot be null or empty", e.getMessage());
     }
-
-    /* ------------------------------------------------------------------------------------------
-     * Todo: With null argument, it should throw illegal argument exception
-     */
-//    @Test
-//    public void albumReleaseYearHasToBeYear() {
-//        assertThrows(IllegalArgumentException.class, () -> album.setReleaseYear(0);
-//    }
-
-
-    //    test cases for getAlbumName
-
-    //    test cases for setAlbumName
-    /* ------------------------------------------------------------------------------------------
-     * Todo: With null argument, it should throw illegal argument exception
-     */
-
-    @Test
-    @DisplayName("Album name cannot be null")
-    public void albumNameCannotBeNull() {
-        assertThrows(NullPointerException.class, () -> album.setAlbumName(null));
-    }
-
-    @DisplayName("")
-    @ParameterizedTest
-    @ValueSource(strings = { "Oded Tzur", "Mal Waldron Trio", "Julia Hülsmann Quartet" })
-    public void checkAlbumName(String candidate){
-        album.setAlbumName(candidate);
-        assertEquals( candidate, album.getAlbumName());
-    }
-
 
     @ParameterizedTest
     @ValueSource(strings = {"", " ", "    \t"})
@@ -275,15 +212,6 @@ class AlbumUnitTest {
     public void albumNameCannotBeEmptyOrBlank(String arg) {
         assertThrows(IllegalArgumentException.class, () -> album.setAlbumName(arg));
     }
-
-    @Test
-    public void sameNameAndNumberMeansSameAlbum() {
-        Album album1 = new Album(1975, "ECM 1064/65", "The Köln Concert");
-
-        assertEquals(album, album1);
-    }
-
-
 
     @DisplayName("Should reject improper album name with one or multiple letters")
     @ParameterizedTest
@@ -294,13 +222,11 @@ class AlbumUnitTest {
 
     @DisplayName("Should accept proper album name")
     @ParameterizedTest
-    @ValueSource(strings = {"The Köln Concert", "LA MISTERIOSA MUSICA DELLA REGINA LOANA", "CHARMEDITERRANÉEN", "CONTE DE L'INCROYABLE AMOUR",})
+    @ValueSource(strings = {"LA MISTERIOSA MUSICA DELLA REGINA LOANA", "CONTE DE L'INCROYABLE AMOUR", "Oded Tzur", "Mal Waldron Trio"})
     public void shouldAcceptProperAlbumName(String args) {
         album.setAlbumName(args);
-        assertTrue(args.equals(album.getAlbumName()));
+        assertTrue(args == (album.getAlbumName()));
     }
-
-
 
 
 

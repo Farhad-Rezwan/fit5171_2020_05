@@ -47,7 +47,6 @@ public class MusicianTest {
         assertTrue(args.equals(mus.getName()));
     }
 
-    @Test
     @DisplayName("Should reject improper Musician name with multiple invalid letters")
     @ParameterizedTest
     @ValueSource(strings = {"1212", "@", "$", "_", "   F", "F   ", "f12"})

@@ -10,6 +10,8 @@ public class MusicalInstrument extends Entity {
 
 
     public MusicalInstrument(String name) {
+        notNull(name);
+        notBlank(name);
         this.name = name;
     }
 
@@ -18,9 +20,8 @@ public class MusicalInstrument extends Entity {
     }
 
     public void setName(String name) {
-        if (!name.matches("^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$"))
-        {
-            throw new IllegalArgumentException("Not a valid Musical Instrument name");
+        if (!name.matches("^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$")) {
+            throw new IllegalArgumentException("Not a valid album name");
         }
         this.name = name;
     }

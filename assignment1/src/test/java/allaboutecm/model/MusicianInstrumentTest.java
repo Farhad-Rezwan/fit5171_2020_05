@@ -55,13 +55,4 @@ class MusicianInstrumentTest {
     }
 
 
-
-
-    @Test
-    void testEquals() {
-    }
-
-    @Test
-    void testHashCode() {
-    }
 }

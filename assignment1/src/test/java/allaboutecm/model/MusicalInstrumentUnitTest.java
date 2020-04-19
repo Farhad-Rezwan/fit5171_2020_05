@@ -6,9 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class MusicalInstrumentUnitTest {
 
@@ -16,8 +14,14 @@ public class MusicalInstrumentUnitTest {
 
 
     @BeforeEach
-    public void setup() {
-        MusicalInstrument musI = new MusicalInstrument("Piano");
+    public void setUp() {
+        musI = new MusicalInstrument("Piano");
+    }
+
+    @DisplayName("Album object Should Not Be Null")
+    @Test
+    public void shouldConstructAlbum() {
+        assertNotNull(musI, "Musical Instrument object should not be null");
     }
 
     @DisplayName("setMusician Instrument Name with null argument should throw null pointer exception")
@@ -29,10 +33,8 @@ public class MusicalInstrumentUnitTest {
     @ParameterizedTest
     @DisplayName("Should reject improper Musical Instrument name with multiple letters")
     @ValueSource(strings = {"1212", "@", "$", "_", "   F", "F   ", "f12"})
-    public void shouldThrowIllegalArgumentExceptionWhenMusicalInstrumentNameIsSetALetter(String args) {
-
-        musI.setName(args);
-        assertThrows(IllegalArgumentException.class, () -> musI.getName());
+    public void shouldThrowIllegalArgumentExceptionWhenAlbumNameIsSetALetter(String args) {
+        assertThrows(IllegalArgumentException.class, () -> musI.setName(args));
     }
 
 
