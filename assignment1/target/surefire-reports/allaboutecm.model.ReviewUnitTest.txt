@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: allaboutecm.model.ReviewUnitTest
 -------------------------------------------------------------------------------
-Tests run: 17, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 10.117 s - in allaboutecm.model.ReviewUnitTest
+Tests run: 17, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 9.326 s - in allaboutecm.model.ReviewUnitTest

@@ -18,7 +18,7 @@ public class MusicalInstrumentUnitTest {
         musI = new MusicalInstrument("Piano");
     }
 
-    @DisplayName("Album object Should Not Be Null")
+    @DisplayName("MusicalInstrument Should Not Be Null")
     @Test
     public void shouldConstructAlbum() {
         assertNotNull(musI, "Musical Instrument object should not be null");
@@ -43,14 +43,6 @@ public class MusicalInstrumentUnitTest {
     @ValueSource(strings = {"Piano", "Accordion", "Piccolo Clarinet"})
     public void shouldAcceptProperMusicalInstrumentName(String args)
     {
-        musI.setName(args);
-        assertTrue(args.equals(musI.getName()));
-    }
-
-    @DisplayName("Should accept proper musical instrument name")
-    @ParameterizedTest
-    @ValueSource(strings = {"HONEY FOUNTAIN", "HIDDEN CHAMBER", "King Kunter", "El-pardo'n", "Farhad's November Rain"})
-    public void shouldAcceptProperTrackName(String args) {
         musI.setName(args);
         assertTrue(args.equals(musI.getName()));
     }
