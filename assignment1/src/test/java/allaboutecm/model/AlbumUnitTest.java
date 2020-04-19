@@ -98,7 +98,7 @@ class AlbumUnitTest {
 
     @DisplayName("Should throw NullPointerException when featured musician is set to null")
     @Test
-    public void shouldThrowExceptionWhenSetFeaturedMusicianSetToNull() {
+    public void shouldThrowExceptionWhenFeaturedMusicianSetToNull() {
         NullPointerException e = assertThrows(NullPointerException.class, () -> album.setFeaturedMusicians(null));
         assertEquals("Featured musician list cannot be null", e.getMessage());
     }
@@ -171,19 +171,106 @@ class AlbumUnitTest {
         assertEquals(album.getAlbumURL(),u);
     }
 
-//    @Test
-//    @DisplayName("Should throw Illegal Argument Exception if less than one track is set")
-//    public void shouldThrowIllegalArgumentExceptionWhenLessThenOneTrackIsSet() {
-//        List<String> trackList;
-//        trackList = new ArrayList<>();
-//        assertThrows(IllegalArgumentException.class, ()-> album.setTracks(trackList));
-//    }
-//
-//    @Test
-//    public void shouldThrowExceptionWhenTracksSetToNull() {
-//        NullPointerException e = assertThrows(NullPointerException.class, () -> album.setTracks(null));
-//        assertEquals("Tracks list cannot be null", e.getMessage());
-//    }
+    @DisplayName("Should throw null pointer exception when tracks is set to null")
+    @Test
+    public void shouldThrowNullPointerExceptionWhenTrackSetToNull() {
+        NullPointerException e = assertThrows(NullPointerException.class, ()-> album.setTracks(null));
+        assertEquals("Tracks list cannot be null", e.getMessage());
+    }
+
+    @DisplayName("Same track name and length should refer to the same Track object")
+    @Test
+    public void twoTracksWithSameNameAndLengthShouldReferSameTrack() {
+        Track t = new Track("HONEY FOUNTAIN", "4:34");
+        Set<Track> s = new HashSet<Track>();
+        s.add(t);
+        album.setTracks(s);
+
+        for (Iterator<Track> tracks = s.iterator(); tracks.hasNext(); ) {
+            Track obj = tracks.next();
+            assertTrue(obj.equals(new Track("HONEY FOUNTAIN", "4:34")));
+        }
+    }
+
+    @DisplayName("Should throw null pointer exception when albumReview is set to null")
+    @Test
+    public void shouldThrowNullPointerExceptionWhenAlbumReviewSetNull() {
+        NullPointerException e = assertThrows(NullPointerException.class, ()-> album.setAlbumReview(null));
+        assertEquals("Album Review cannot be null", e.getMessage());
+    }
+
+    @DisplayName("Same website URL and rating for the album review should refer same Review object")
+    @Test
+    public void twoReviewWithSameReviewWebsiteURLandRatingShouldReturnSameReview() throws IOException {
+        Review r = new Review(new URL("https://www.allmusic.com/album/big-vicious-mw0003359408"), 4.0 );
+        Set<Review> s = new HashSet<Review>();
+        s.add(r);
+        album.setAlbumReview(s);
+
+        for (Iterator<Review> reviews = s.iterator(); reviews.hasNext();) {
+            Review obj = reviews.next();
+            assertTrue(obj.equals(new Review(new URL("https://www.allmusic.com/album/big-vicious-mw0003359408"), 4.0 )));
+        }
+    }
+
+    @DisplayName("Should throw null pointer exception when album genre is set to null")
+    @Test
+    public void shouldThrowNullPointerExceptionWhenGenreSetToNull() {
+        NullPointerException e = assertThrows(NullPointerException.class, ()-> album.setGenre(null));
+        assertEquals("Genre cannot be null", e.getMessage());
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"", " ", "    \t"})
+    @DisplayName("Genre cannot be empty or blank")
+    public void genreCannotBeEmptyOrBlank(String arg) {
+        assertThrows(IllegalArgumentException.class, () -> album.setGenre(arg));
+    }
+
+    @DisplayName("Should reject improper Genre")
+    @ParameterizedTest
+    @ValueSource(strings = {"1212", "@", "$", "_", "   F", "F   ", "f12"})
+    public void shouldThrowIllegalArgumentExceptionWhenGenreSetInvalidValues(String args) {
+        assertThrows(IllegalArgumentException.class, () -> album.setGenre(args));
+    }
+
+    @DisplayName("Should accept proper genre name or styles (can contain &)")
+    @ParameterizedTest
+    @ValueSource(strings = {"Electronic Dance Music", "Rock", "Jazz", "Dub-step", "Rhythm & Blues", "Techno"})
+    public void shouldAcceptProperGenre(String args) {
+        album.setGenre(args);
+        assertTrue(args.equals(album.getGenre()));
+    }
+
+    @DisplayName("Should throw null pointer exception when album release format is set to null")
+    @Test
+    public void shouldThrowNullPointerExceptionWhenAlbumReleaseFormatSetNull() {
+        NullPointerException e = assertThrows(NullPointerException.class, ()-> album.setReleaseFormat(null));
+        assertEquals("Release format cannot be null", e.getMessage());
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"", " ", "    \t"})
+    @DisplayName("Album release format cannot be empty or blank")
+    public void releaseFormatCannotBeEmptyOrBlank(String arg) {
+        assertThrows(IllegalArgumentException.class, () -> album.setReleaseFormat(arg));
+    }
+
+    @DisplayName("Album Release format should have predefined values")
+    @ParameterizedTest()
+    @ValueSource(strings = {"CD", "LP", "DVD", "BLURAY", "BOOK"})
+    public void shouldAcceptValidReleaseFormats (String format) {
+        album.setReleaseFormat(format);
+        assertEquals(format, album.getReleaseFormat());
+    }
+
+    @DisplayName("Album Release format should accept predefined values")
+    @ParameterizedTest()
+    @ValueSource(strings = {"CD_", "/lp", "DvD", "BlueRay1", "Text"})
+    public void shouldRejectInvalidReleaseFormats (String format) {
+        IllegalArgumentException i = assertThrows(IllegalArgumentException.class, ()-> album.setReleaseFormat(format));
+        assertEquals("Illegal release format", i.getMessage());
+    }
 
     @Test
     @DisplayName("Input should be a number(year)between 1970 and current.")
@@ -227,10 +314,5 @@ class AlbumUnitTest {
         album.setAlbumName(args);
         assertTrue(args == (album.getAlbumName()));
     }
-
-
-
-
-
 
 }

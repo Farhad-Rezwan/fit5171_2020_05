@@ -6,15 +6,11 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.io.IOException;
-import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.UnknownHostException;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import static org.apache.commons.lang3.Validate.notBlank;
-import static org.apache.commons.lang3.Validate.notNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class MusicianTest {

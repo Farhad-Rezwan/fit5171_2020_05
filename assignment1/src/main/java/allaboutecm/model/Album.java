@@ -1,16 +1,12 @@
 package allaboutecm.model;
 
-import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
-import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.IOException;
-import java.net.ProtocolException;
 import java.net.URL;
 import java.net.UnknownHostException;
 import java.util.Calendar;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -39,12 +35,12 @@ public class Album extends Entity {
 
     private URL albumURL;
 
-
-
-
     private Set<Track> tracks;
+
     private Set<Review> albumReview;
+
     private String genre;
+
     private String releaseFormat;
 
 
@@ -149,7 +145,66 @@ public class Album extends Entity {
         }
 
     }
+    public Set<Track> getTracks() {
+        return tracks;
+    }
 
+    public void setTracks(Set<Track> tracks) {
+        if (null == tracks) {
+            throw new NullPointerException("Tracks list cannot be null");
+        }
+        this.tracks = tracks;
+    }
+
+    public Set<Review> getAlbumReview() {
+        return albumReview;
+    }
+
+    public void setAlbumReview(Set<Review> albumReview) {
+        if (null == albumReview) {
+            throw new NullPointerException("Album Review cannot be null");
+        }
+        this.albumReview = albumReview;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        if (null == genre) {
+            throw new NullPointerException("Genre cannot be null");
+        }
+        if (!genre.matches("^[a-zA-Z]+(([',. -][a-zA-Z& ])?[a-zA-Z&]*)*$")) {
+            throw new IllegalArgumentException("Not a valid track name");
+        }
+
+        notNull(genre);
+        notBlank(genre);
+
+        this.genre = genre;
+    }
+
+    public String getReleaseFormat() {
+        return releaseFormat;
+    }
+
+    public void setReleaseFormat(String releaseFormat) {
+        String[] formats = {"CD", "LP", "DVD", "BLURAY", "BOOK"};
+        if (null == releaseFormat) {
+            throw new NullPointerException("Release format cannot be null");
+        }
+
+        for (int i = 0; i < 5; i++) {
+
+            if(!StringUtils.equalsAny(releaseFormat, formats)) {
+                throw new IllegalArgumentException("Illegal release format");
+            }
+
+        }
+
+        this.releaseFormat = releaseFormat;
+    }
 
 
     public int getReleaseYear() {
@@ -181,37 +236,7 @@ public class Album extends Entity {
         this.albumName = albumName;
     }
 
-    public Set<Track> getTracks() {
-        return tracks;
-    }
 
-    public void setTracks(Set<Track> tracks) {
-        this.tracks = tracks;
-    }
-
-    public Set<Review> getAlbumReview() {
-        return albumReview;
-    }
-
-    public void setAlbumReview(Set<Review> albumReview) {
-        this.albumReview = albumReview;
-    }
-
-    public String getGenre() {
-        return genre;
-    }
-
-    public void setGenre(String genre) {
-        this.genre = genre;
-    }
-
-    public String getReleaseFormat() {
-        return releaseFormat;
-    }
-
-    public void setReleaseFormat(String releaseFormat) {
-        this.releaseFormat = releaseFormat;
-    }
 
     @Override
     public boolean equals(Object o) {

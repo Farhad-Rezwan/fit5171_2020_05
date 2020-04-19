@@ -1,5 +1,6 @@
 package allaboutecm.model;
 
+import org.apache.commons.lang3.ObjectUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -39,7 +40,7 @@ public class TrackUnitTest {
     @DisplayName("Should reject improper track name")
     @ParameterizedTest
     @ValueSource(strings = {"1212", "@", "$", "_", "   F", "F   ", "f12"})
-    public void shouldThrowIllegalArgumentExceptionWhenTrackNameIsSetALetter(String args) {
+    public void shouldThrowIllegalArgumentExceptionWhenTrackNameSetInvalidValues(String args) {
         assertThrows(IllegalArgumentException.class, () -> track.setName(args));
     }
 
@@ -51,11 +52,43 @@ public class TrackUnitTest {
         assertTrue(args.equals(track.getName()));
     }
 
+    @DisplayName("Should throw null pointer exception when track length is set to null")
+    @Test
+    public void shouldThrowNullPointerExceptionWhenTrackLengthSetNull() {
+        assertThrows(NullPointerException.class, ()-> track.setLength(null));
+    }
+
+    @DisplayName("Should throw IllegalArgumentExceptionWhen track length " +
+            "format is not \"MM:SS\"" +
+            "(assumption 99:59 is max track length)")
+    @ParameterizedTest
+    @ValueSource(strings = {"120:90", "09/10", "04-03"})
+    public void shouldThrowIllegalArgumentExceptionWhenFormatIsNotMatched(String length) {
+        assertThrows(IllegalArgumentException.class, ()->track.setLength(length));
+    }
+
+    @DisplayName("Should throw IllegalArgumentExceptionWhen track length second is set more than 59")
+    @ParameterizedTest
+    @ValueSource(strings = {"03:60","99:90"})
+    public void shouldThrowIllegalArgumentExceptionWhenLenthSecondIsInvalid(String length) {
+        assertThrows(IllegalArgumentException.class, ()->track.setLength(length));
+    }
+
+    @DisplayName("Should accept proper length of tracks")
+    @ParameterizedTest
+    @ValueSource(strings = {"04:00","25:10", "99:59"})
+    public void shouldAcceptProperLengthofTracks(String length) {
+        track.setLength(length);
+        assertEquals(length, track.getLength());
+    }
+
     @DisplayName("Should accept proper track length in minute and second format")
     @Test
     public void shouldAcceptProperTrackLengthFormatOfTime() {
         track.setLength("03:04");
     }
+
+
 
 
 }

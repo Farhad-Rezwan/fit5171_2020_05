@@ -42,11 +42,20 @@ public class Track extends Entity{
         this.name = name;
     }
 
+
+//
+
     public String getLength() {
         return length;
     }
 
     public void setLength(String length) {
+        if (null == length) {
+            throw new NullPointerException("Track length can not be null");
+        }
+        if (!length.matches("^(?:([0-9]?\\d):)?([0-5]?\\d)$")) {
+            throw new IllegalArgumentException("Not a valid track length");
+        }
         this.length = length;
     }
 
@@ -66,9 +75,7 @@ public class Track extends Entity{
 
 }
 
-//    public String toString() {
-//        return String.format("%02d:%02d:%02d", hour, minute, second);
-//    }
+
 
 
 
