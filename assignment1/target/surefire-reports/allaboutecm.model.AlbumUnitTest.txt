@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: allaboutecm.model.AlbumUnitTest
 -------------------------------------------------------------------------------
-Tests run: 75, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.421 s - in allaboutecm.model.AlbumUnitTest
+Tests run: 75, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.066 s - in allaboutecm.model.AlbumUnitTest
