@@ -1,11 +1,7 @@
 package allaboutecm.model;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Sets;
-
 import java.io.IOException;
 import java.net.HttpURLConnection;
-import java.net.ProtocolException;
 import java.net.URL;
 import java.net.UnknownHostException;
 import java.util.Objects;
@@ -16,6 +12,8 @@ public class Review extends Entity {
     private URL websiteURL;
     private Double rating;
     private String review;
+
+
 
     public Review(URL websiteURL, Double rating) throws IOException {
         notNull(websiteURL);
@@ -65,6 +63,9 @@ public class Review extends Entity {
     }
 
     public void setRating(Double rating) {
+        if (null == rating) {
+            throw new NullPointerException("Rating value should not be null");
+        }
         if (rating < 0 || rating > 5) {
             throw new IllegalArgumentException("Rating should hold valid range");
         }
@@ -82,21 +83,26 @@ public class Review extends Entity {
     }
 
     public void setReview(String review) {
+        if (null == review){
+            throw new NullPointerException("Review cannot be null or empty");
+        }
+        notBlank(review);
+
         this.review = review;
     }
-
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Review r = (Review) o;
-        return websiteURL == r.websiteURL &&
-                rating == r.rating;
+        Review review = (Review) o;
+        return websiteURL.equals(review.websiteURL) &&
+                rating.equals(review.rating);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(websiteURL, rating);
     }
+
 }

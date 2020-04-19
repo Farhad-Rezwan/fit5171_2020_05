@@ -14,7 +14,7 @@ public class TrackUnitTest {
 
     @BeforeEach
     public void setUp() {
-         track = new Track("HONEY FOUNTAIN",02);
+         track = new Track("HONEY FOUNTAIN","02:04");
     }
 
     @DisplayName("Track object should not be null")
@@ -23,7 +23,7 @@ public class TrackUnitTest {
         assertNotNull(track, "Track object should not be null");
     }
 
-    @DisplayName("setTrackName with null argument should throw null pointer exception")
+    @DisplayName("setTrackName with null argument should throw NullPointerException")
     @Test
     public void shouldThrowNullPointerExceptionWhenTrackNameSetNull() {
         assertThrows(NullPointerException.class, () -> track.setName(null));
@@ -36,26 +36,26 @@ public class TrackUnitTest {
         assertThrows(IllegalArgumentException.class, () -> track.setName(arg));
     }
 
-    @DisplayName("Should reject improper track name with one letter")
+    @DisplayName("Should reject improper track name")
     @ParameterizedTest
     @ValueSource(strings = {"1212", "@", "$", "_", "   F", "F   ", "f12"})
     public void shouldThrowIllegalArgumentExceptionWhenTrackNameIsSetALetter(String args) {
         assertThrows(IllegalArgumentException.class, () -> track.setName(args));
     }
 
-    @DisplayName("Should accept proper track name")
+    @DisplayName("Should accept proper track name, proper track name might include \"'\" and \"-\"")
     @ParameterizedTest
-    @ValueSource(strings = {"HONEY FOUNTAIN", "HIDDEN CHAMBER", "King Kunter", "El-pardo'n", "Farhad's November Rain"})
+    @ValueSource(strings = {"HONEY FOUNTAIN", "HIDDEN CHAMBER", "King Kunter", "El-pardo'n", "Farhad's November Rain", "Farhad-November Rain"})
     public void shouldAcceptProperTrackName(String args) {
         track.setName(args);
         assertTrue(args.equals(track.getName()));
     }
 
-
-
-
-
-
+    @DisplayName("Should accept proper track length in minute and second format")
+    @Test
+    public void shouldAcceptProperTrackLengthFormatOfTime() {
+        track.setLength("03:04");
+    }
 
 
 }

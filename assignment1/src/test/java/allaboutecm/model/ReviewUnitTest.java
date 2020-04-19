@@ -1,5 +1,6 @@
 package allaboutecm.model;
 
+import org.apache.commons.lang3.ObjectUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -7,7 +8,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.UnknownHostException;
 
@@ -33,8 +33,9 @@ class ReviewUnitTest {
         review.setWebsiteURL(new URL("https://www.albumoftheyear.org/album/223677-avishai-cohen-big-vicious-big-vicious.php"));
     }
 
+    @DisplayName("Should throw exception when  website URL is set to null")
     @Test
-    public void shouldThrowExceptionWhenAlbumURLSetToNull() {
+    public void shouldThrowExceptionWhenWebsiteURLSetToNull() {
         assertThrows(NullPointerException.class, () -> review.setWebsiteURL(null));
     }
 
@@ -42,6 +43,13 @@ class ReviewUnitTest {
     @Test
     public void shouldThrowUnknownHostExceptionWhenInvalidWebsiteURLIsSet() {
         assertThrows(UnknownHostException.class, () -> review.setWebsiteURL(new URL("https://www.goasdfasdfasdfaogle.com")));
+    }
+
+    @DisplayName("Should throw null pointer exception when rating is set to null")
+    @Test
+    public void shouldThrowNullPointerExceptionWhenRatingIsSetToNull() {
+        NullPointerException e = assertThrows(NullPointerException.class, ()-> review.setRating(null));
+        assertEquals("Rating value should not be null", e.getMessage() );
     }
 
     @DisplayName("Should throw illegal argument exception when rating is set to negative double value")
@@ -58,9 +66,28 @@ class ReviewUnitTest {
         assertThrows(IllegalArgumentException.class, () -> review.setRating(rating));
     }
 
-    @Test
-    public void shouldAcceptIntegerOfWholeNumber () {
-        review.setRating(3);
-        assertTrue(3.0 == review.getRating());
+    @DisplayName("Should accept parameter of integers when required")
+    @ParameterizedTest()
+    @ValueSource(ints = {0, 1, 4, 5})
+    public void shouldAcceptIntegerOfWholeNumber (int args) {
+        review.setRating(args);
+        assertTrue(review.getRating() == args);
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"", " ", "    \t"})
+    @DisplayName("Review cannot be empty or blank")
+    public void reviewCannotBeEmptyOrNull(String arg) {
+        assertThrows(IllegalArgumentException.class, () -> review.setReview(arg));
+    }
+
+    @DisplayName("Same ratingURL and same rating means same Review")
+    @Test
+    public void sameRatingURLandSameRatingMeansSameReview() throws IOException {
+        Review review1 = new Review(new URL("https://www.allmusic.com/album/big-vicious-mw0003359408"), 4.0);
+        assertEquals(review1,
+                review);
+    }
+
+
 }
