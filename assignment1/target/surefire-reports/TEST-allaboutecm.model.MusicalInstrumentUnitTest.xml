@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="allaboutecm.model.MusicalInstrumentUnitTest" time="0.024" tests="12" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="allaboutecm.model.MusicalInstrumentUnitTest" time="0.038" tests="12" errors="0" skipped="0" failures="0">
   <properties>
     <property name="gopherProxySet" value="false"/>
     <property name="awt.toolkit" value="sun.lwawt.macosx.LWCToolkit"/>
@@ -17,7 +17,7 @@
     <property name="user.country" value="AU"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home/jre/lib"/>
-    <property name="sun.java.command" value="/Users/farhadullahrezwan/Desktop/GitHUBRoot.nosync/fit5171_2020_05/assignment1/target/surefire/surefirebooter5704584229637885686.jar /Users/farhadullahrezwan/Desktop/GitHUBRoot.nosync/fit5171_2020_05/assignment1/target/surefire 2020-04-21T17-06-56_599-jvmRun1 surefire5290756387598182957tmp surefire_08946001461022703033tmp"/>
+    <property name="sun.java.command" value="/Users/farhadullahrezwan/Desktop/GitHUBRoot.nosync/fit5171_2020_05/assignment1/target/surefire/surefirebooter8958408123458531759.jar /Users/farhadullahrezwan/Desktop/GitHUBRoot.nosync/fit5171_2020_05/assignment1/target/surefire 2020-05-05T20-02-26_756-jvmRun1 surefire8773977733585858263tmp surefire_03432249656408509589tmp"/>
     <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="surefire.test.class.path" value="/Users/farhadullahrezwan/Desktop/GitHUBRoot.nosync/fit5171_2020_05/assignment1/target/test-classes:/Users/farhadullahrezwan/Desktop/GitHUBRoot.nosync/fit5171_2020_05/assignment1/target/classes:/Users/farhadullahrezwan/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.6.0/junit-jupiter-engine-5.6.0.jar:/Users/farhadullahrezwan/.m2/repository/org/apiguardian/apiguardian-api/1.1.0/apiguardian-api-1.1.0.jar:/Users/farhadullahrezwan/.m2/repository/org/junit/platform/junit-platform-engine/1.6.0/junit-platform-engine-1.6.0.jar:/Users/farhadullahrezwan/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/Users/farhadullahrezwan/.m2/repository/org/junit/platform/junit-platform-commons/1.6.0/junit-platform-commons-1.6.0.jar:/Users/farhadullahrezwan/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.6.0/junit-jupiter-api-5.6.0.jar:/Users/farhadullahrezwan/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.6.0/junit-jupiter-params-5.6.0.jar:/Users/farhadullahrezwan/.m2/repository/com/google/guava/guava/28.2-jre/guava-28.2-jre.jar:/Users/farhadullahrezwan/.m2/repository/com/google/guava/failureaccess/1.0.1/failureaccess-1.0.1.jar:/Users/farhadullahrezwan/.m2/repository/com/google/guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar:/Users/farhadullahrezwan/.m2/repository/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.jar:/Users/farhadullahrezwan/.m2/repository/org/checkerframework/checker-qual/2.10.0/checker-qual-2.10.0.jar:/Users/farhadullahrezwan/.m2/repository/com/google/errorprone/error_prone_annotations/2.3.4/error_prone_annotations-2.3.4.jar:/Users/farhadullahrezwan/.m2/repository/com/google/j2objc/j2objc-annotations/1.3/j2objc-annotations-1.3.jar:/Users/farhadullahrezwan/.m2/repository/org/apache/commons/commons-lang3/3.10/commons-lang3-3.10.jar:/Users/farhadullahrezwan/.m2/repository/org/apache/commons/commons-csv/1.8/commons-csv-1.8.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -31,14 +31,14 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.awt.graphicsenv" value="sun.awt.CGraphicsEnvironment"/>
-    <property name="surefire.real.class.path" value="/Users/farhadullahrezwan/Desktop/GitHUBRoot.nosync/fit5171_2020_05/assignment1/target/surefire/surefirebooter5704584229637885686.jar"/>
+    <property name="surefire.real.class.path" value="/Users/farhadullahrezwan/Desktop/GitHUBRoot.nosync/fit5171_2020_05/assignment1/target/surefire/surefirebooter8958408123458531759.jar"/>
     <property name="sun.boot.class.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home/jre/classes"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.runtime.version" value="1.8.0_241-b07"/>
     <property name="user.name" value="farhadullahrezwan"/>
     <property name="path.separator" value=":"/>
-    <property name="os.version" value="10.15.3"/>
+    <property name="os.version" value="10.15.4"/>
     <property name="java.endorsed.dirs" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home/jre/lib/endorsed"/>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="file.encoding" value="UTF-8"/>
@@ -62,12 +62,12 @@
     <property name="java.class.version" value="52.0"/>
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
   </properties>
-  <testcase name="shouldAcceptProperMusicalInstrumentName(String)[1]" classname="allaboutecm.model.MusicalInstrumentUnitTest" time="0.001"/>
-  <testcase name="shouldAcceptProperMusicalInstrumentName(String)[2]" classname="allaboutecm.model.MusicalInstrumentUnitTest" time="0.001"/>
-  <testcase name="shouldAcceptProperMusicalInstrumentName(String)[3]" classname="allaboutecm.model.MusicalInstrumentUnitTest" time="0"/>
+  <testcase name="shouldAcceptProperMusicalInstrumentName(String)[1]" classname="allaboutecm.model.MusicalInstrumentUnitTest" time="0"/>
+  <testcase name="shouldAcceptProperMusicalInstrumentName(String)[2]" classname="allaboutecm.model.MusicalInstrumentUnitTest" time="0"/>
+  <testcase name="shouldAcceptProperMusicalInstrumentName(String)[3]" classname="allaboutecm.model.MusicalInstrumentUnitTest" time="0.001"/>
   <testcase name="shouldConstructAlbum" classname="allaboutecm.model.MusicalInstrumentUnitTest" time="0.001"/>
-  <testcase name="shouldThrowIllegalArgumentExceptionWhenAlbumNameIsSetALetter(String)[1]" classname="allaboutecm.model.MusicalInstrumentUnitTest" time="0"/>
-  <testcase name="shouldThrowIllegalArgumentExceptionWhenAlbumNameIsSetALetter(String)[2]" classname="allaboutecm.model.MusicalInstrumentUnitTest" time="0.001"/>
+  <testcase name="shouldThrowIllegalArgumentExceptionWhenAlbumNameIsSetALetter(String)[1]" classname="allaboutecm.model.MusicalInstrumentUnitTest" time="0.003"/>
+  <testcase name="shouldThrowIllegalArgumentExceptionWhenAlbumNameIsSetALetter(String)[2]" classname="allaboutecm.model.MusicalInstrumentUnitTest" time="0"/>
   <testcase name="shouldThrowIllegalArgumentExceptionWhenAlbumNameIsSetALetter(String)[3]" classname="allaboutecm.model.MusicalInstrumentUnitTest" time="0.001"/>
   <testcase name="shouldThrowIllegalArgumentExceptionWhenAlbumNameIsSetALetter(String)[4]" classname="allaboutecm.model.MusicalInstrumentUnitTest" time="0.001"/>
   <testcase name="shouldThrowIllegalArgumentExceptionWhenAlbumNameIsSetALetter(String)[5]" classname="allaboutecm.model.MusicalInstrumentUnitTest" time="0"/>

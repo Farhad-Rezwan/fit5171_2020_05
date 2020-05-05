@@ -60,8 +60,6 @@ public class Album extends Entity {
         featuredMusicians = Sets.newHashSet();
         instruments = Sets.newHashSet();
         tracks = Sets.newHashSet();
-
-
     }
 
     public String getRecordNumber() {
