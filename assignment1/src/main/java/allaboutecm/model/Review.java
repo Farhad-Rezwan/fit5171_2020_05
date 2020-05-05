@@ -71,6 +71,7 @@ public class Review extends Entity {
         }
         this.rating = rating;
     }
+
     public void setRating(int rating) {
         if (rating < 0 || rating > 5) {
             throw new IllegalArgumentException("Rating should hold valid range");
@@ -78,6 +79,7 @@ public class Review extends Entity {
 
         this.rating = Double.valueOf((rating));
     }
+
     public String getReview() {
         return review;
     }
